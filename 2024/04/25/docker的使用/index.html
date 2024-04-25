@@ -11,11 +11,11 @@
   <meta charset="utf-8">
 
   
-  <title>Hexo文档操作</title>
+  <title>Docker操作</title>
   
-  <link rel="canonical" href="http://example.com/2023/12/14/Hexo%E6%96%87%E6%A1%A3%E6%93%8D%E4%BD%9C/">
+  <link rel="canonical" href="http://example.com/2024/04/25/docker%E7%9A%84%E4%BD%BF%E7%94%A8/">
   
-  <meta name="description" content="Hexo文档操作1.hexo命令行操作终端先进入文件 1/Users/yexinhendadejie/Documents/docs/hexo/HurdJay  1234567hexo clean // 清除缓存hexo g // 手动部署hexo s // 预览hexo d // 上传github ">
+  <meta name="description" content="docker的使用先cd &amp;#x2F;Users&amp;#x2F;yexinhendadejie&amp;#x2F;Documents&amp;#x2F;docker 这边作为容器 映射的文件夹 1.docker容器常用命令12345docker ps       //查看当前运行的容器docker ps -a    /">
   
   
   <meta name="author" content="John Doe">
@@ -24,21 +24,21 @@
   
   <meta property="og:site_name" content="Hexo" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="Hexo文档操作" />
+  <meta property="og:title" content="Docker操作" />
   
-  <meta property="og:description" content="Hexo文档操作1.hexo命令行操作终端先进入文件 1/Users/yexinhendadejie/Documents/docs/hexo/HurdJay  1234567hexo clean // 清除缓存hexo g // 手动部署hexo s // 预览hexo d // 上传github ">
+  <meta property="og:description" content="docker的使用先cd &amp;#x2F;Users&amp;#x2F;yexinhendadejie&amp;#x2F;Documents&amp;#x2F;docker 这边作为容器 映射的文件夹 1.docker容器常用命令12345docker ps       //查看当前运行的容器docker ps -a    /">
   
-  <meta property="og:url" content="http://example.com/2023/12/14/Hexo%E6%96%87%E6%A1%A3%E6%93%8D%E4%BD%9C/" />
+  <meta property="og:url" content="http://example.com/2024/04/25/docker%E7%9A%84%E4%BD%BF%E7%94%A8/" />
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Hexo文档操作">
+  <meta name="twitter:title" content="Docker操作">
   
-  <meta name="twitter:description" content="Hexo文档操作1.hexo命令行操作终端先进入文件 1/Users/yexinhendadejie/Documents/docs/hexo/HurdJay  1234567hexo clean // 清除缓存hexo g // 手动部署hexo s // 预览hexo d // 上传github ">
-  
-  
+  <meta name="twitter:description" content="docker的使用先cd &amp;#x2F;Users&amp;#x2F;yexinhendadejie&amp;#x2F;Documents&amp;#x2F;docker 这边作为容器 映射的文件夹 1.docker容器常用命令12345docker ps       //查看当前运行的容器docker ps -a    /">
   
   
-  <meta name="twitter:url" content="http://example.com/2023/12/14/Hexo%E6%96%87%E6%A1%A3%E6%93%8D%E4%BD%9C/" />
+  
+  
+  <meta name="twitter:url" content="http://example.com/2024/04/25/docker%E7%9A%84%E4%BD%BF%E7%94%A8/" />
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -190,18 +190,46 @@
 </div>
 
         <div class="trans">
-            <h2>Hexo文档操作</h2>
+            <h2>Docker操作</h2>
 
-  <h1 id="Hexo文档操作"><a href="#Hexo文档操作" class="headerlink" title="Hexo文档操作"></a>Hexo文档操作</h1><h2 id="1-hexo命令行操作"><a href="#1-hexo命令行操作" class="headerlink" title="1.hexo命令行操作"></a>1.hexo命令行操作</h2><p>终端先进入文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/Users/yexinhendadejie/Documents/docs/hexo/HurdJay</span><br></pre></td></tr></table></figure>
+  <h1 id="docker的使用"><a href="#docker的使用" class="headerlink" title="docker的使用"></a>docker的使用</h1><p>先cd &#x2F;Users&#x2F;yexinhendadejie&#x2F;Documents&#x2F;docker 这边作为容器 映射的文件夹</p>
+<h2 id="1-docker容器常用命令"><a href="#1-docker容器常用命令" class="headerlink" title="1.docker容器常用命令"></a>1.docker容器常用命令</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker ps       <span class="comment">//查看当前运行的容器</span></span><br><span class="line"></span><br><span class="line">docker ps -a    <span class="comment">//查看所有容器</span></span><br><span class="line"></span><br><span class="line">docker pull [mysql]  <span class="comment">//拉取镜像</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">hexo clean <span class="comment">// 清除缓存</span></span><br><span class="line"></span><br><span class="line">hexo g <span class="comment">// 手动部署</span></span><br><span class="line"></span><br><span class="line">hexo s <span class="comment">// 预览</span></span><br><span class="line"></span><br><span class="line">hexo d <span class="comment">// 上传github</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>创建一个新容器 docker run</p>
+<p>-d 是指守护进程 挂后台也能运行 除非手动关闭 看自己的使用场景</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \			<span class="comment">// 创建一个守护进程的容器</span></span><br><span class="line">	--name mysql \		<span class="comment">// --name 取名</span></span><br><span class="line">	--restart=always \ <span class="comment">// 容器掉了自动将其重启</span></span><br><span class="line">	-p <span class="number">3307</span>:<span class="number">3306</span> \	<span class="comment">// 3307是指暴露给外面调用的端口，3306指这个容器的端口(3306映射成3307)</span></span><br><span class="line">	-v ~/Documents/docker/mysql:/<span class="keyword">var</span>/lib/mysql \		<span class="comment">// [映射地址]:[容器内部需要映射的地址]</span></span><br><span class="line">	--network=storage \		<span class="comment">// 网络桥段</span></span><br><span class="line">	--env MYSQL_ROOT_PASSWORD=<span class="number">123456</span> \	<span class="comment">// 每一个容器都有一些搭配 --env</span></span><br><span class="line">	mysql	<span class="comment">// Docker Hub 上的 MySQL 镜像</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="2-文档位置"><a href="#2-文档位置" class="headerlink" title="2.文档位置"></a>2.文档位置</h2><p>位于source下面的_posts 存放的是md文件 </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/Users/yexinhendadejie/Documents/docs/hexo/HurdJay/source/_posts</span><br></pre></td></tr></table></figure>
+<hr>
+<p>网络桥段解释:</p>
+<p>相当于一个大的集合将需要放在一块的地方指明他的桥段</p>
+<p>例如:</p>
+<ul>
+<li>要对数据库mysql操作 还有其他数据库 sqlserver 可以放在同一个桥段下面</li>
+</ul>
+<p>优点:</p>
+<blockquote>
+<p>同一个网络桥段下面 如果sqlserver要访问mysql </p>
+<p>直接 mysql:3306 [容器名]:[端口号]</p>
+<p>mysql对于内部的端口是 3306 所以要用3306 而不是3307</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>Mac 打开隐藏配置文件</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">open ~/.bash_profile         <span class="comment">// 打开配置文件</span></span><br><span class="line">  </span><br><span class="line"><span class="comment">// 配置了一个grc</span></span><br><span class="line">alias grc=<span class="string">&quot;docker run --rm -v /var/run/docker.sock:/var/run/docker.sock cucker/get_command_4_run_container&quot;</span> </span><br><span class="line"></span><br><span class="line">source ~/.bash_profile 			 <span class="comment">// 刷新配置文件</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-docker-compose"><a href="#2-docker-compose" class="headerlink" title="2.docker compose"></a>2.docker compose</h2><p>创建一个 yml文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch docker-compose.yml</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>目的就是为了 一件托管多个 docker  </p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 模板</span></span><br><span class="line">version: <span class="string">&#x27;3.3&#x27;</span></span><br><span class="line">services:</span><br><span class="line">  reference:</span><br><span class="line">    image: wcjiang/reference:latest</span><br><span class="line">    container_name: reference</span><br><span class="line">    restart: always</span><br><span class="line">    environment:</span><br><span class="line">      TZ: Asia/Shanghai</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="number">9667</span>:<span class="number">3000</span></span><br></pre></td></tr></table></figure>
 
 
-  <p> — 2023年12月14日</p>
+  <p> — 2024年4月25日</p>
   
 
 
