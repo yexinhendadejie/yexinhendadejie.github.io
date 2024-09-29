@@ -11,38 +11,34 @@
   <meta charset="utf-8">
 
   
-  <title>All Posts - John Doe</title>
+  <title></title>
   
-  <link rel="canonical" href="http://example.com/archives/2024/">
+  <link rel="canonical" href="http://example.com/2024/09/28/Git%E4%BD%BF%E7%94%A8%E8%A7%84%E8%8C%83/">
   
-  <meta name="description" content="">
+  <meta name="description" content="Git使用规范 使用规则 1.先从main签出 dev  2.再从dev上签出feat&amp;#x2F;user模块   3.写完user 点击dev分支签出 再选择user 进行合并到dev 4.项目完工 点击main 签出 然后选择 dev合并main main 一般不动  123456main/ma">
   
   
   <meta name="author" content="John Doe">
   
   
-  <meta property="og:image" content="http://example.com/images/thumbnail.jpg">
-  
   
   <meta property="og:site_name" content="Hexo" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="All Posts - John Doe" />
+  <meta property="og:title" content="" />
   
-  <meta property="og:description" content="">
+  <meta property="og:description" content="Git使用规范 使用规则 1.先从main签出 dev  2.再从dev上签出feat&amp;#x2F;user模块   3.写完user 点击dev分支签出 再选择user 进行合并到dev 4.项目完工 点击main 签出 然后选择 dev合并main main 一般不动  123456main/ma">
   
-  <meta property="og:url" content="http://example.com/archives/2024/" />
+  <meta property="og:url" content="http://example.com/2024/09/28/Git%E4%BD%BF%E7%94%A8%E8%A7%84%E8%8C%83/" />
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="All Posts - John Doe">
+  <meta name="twitter:title" content="">
   
-  <meta name="twitter:description" content="">
-  
-  
-  
-  <meta name="twitter:image" content="http://example.com/images/thumbnail.jpg">
+  <meta name="twitter:description" content="Git使用规范 使用规则 1.先从main签出 dev  2.再从dev上签出feat&amp;#x2F;user模块   3.写完user 点击dev分支签出 再选择user 进行合并到dev 4.项目完工 点击main 签出 然后选择 dev合并main main 一般不动  123456main/ma">
   
   
-  <meta name="twitter:url" content="http://example.com/archives/2024/" />
+  
+  
+  <meta name="twitter:url" content="http://example.com/2024/09/28/Git%E4%BD%BF%E7%94%A8%E8%A7%84%E8%8C%83/" />
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -194,48 +190,35 @@
 </div>
 
         <div class="trans">
-          
-<h2>All Posts</h2>
+            <h2></h2>
 
+  <h1 id="Git使用规范"><a href="#Git使用规范" class="headerlink" title="Git使用规范"></a>Git使用规范</h1><blockquote>
+<p>使用规则</p>
+<p>1.先从main签出 dev </p>
+<p>2.再从dev上签出feat&#x2F;user模块  </p>
+<p><strong>3.写完user 点击dev分支签出 再选择user 进行合并到dev</strong></p>
+<p>4.项目完工 <strong>点击main 签出 然后选择</strong> dev合并main</p>
+<p><strong>main 一般不动</strong></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">main/master  <span class="comment">// 主分支一般不动</span></span><br><span class="line">feat/user		<span class="comment">// 开发分支 如果我要写user 从main(dev)签出user</span></span><br><span class="line">fix					<span class="comment">// 修复分支 修复了什么bug 一样都从dev签出</span></span><br><span class="line">hot_fix <span class="comment">// 紧急修复 正式版出现bug从main签出紧急修复</span></span><br><span class="line">release <span class="comment">// 发布/预发布</span></span><br><span class="line">uat <span class="comment">// 用户验收测试</span></span><br></pre></td></tr></table></figure>
 
-    <article>
-      <div class="row">
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">feat 		<span class="comment">// 新功能</span></span><br><span class="line">fix 	 <span class="comment">// 修复</span></span><br><span class="line">chore: <span class="comment">// 杂项</span></span><br></pre></td></tr></table></figure>
 
-        <div class="three columns left lit">
-          <p class="bottom">2024年9月28日</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2024/09/28/Git%E4%BD%BF%E7%94%A8%E8%A7%84%E8%8C%83/" class="">
-            
-              no title
-            
-          </a>
-        </div>
-      </div>
-    </article>
+<h2 id="1-tag"><a href="#1-tag" class="headerlink" title="1. tag"></a>1. tag</h2><ul>
+<li>打标签 发布版本的 时候 需要打定 release_v1.0.1_日月年</li>
+</ul>
+<h2 id="2-pull-request-和-issues"><a href="#2-pull-request-和-issues" class="headerlink" title="2.pull request 和 issues"></a>2.pull request 和 issues</h2><blockquote>
+<p>pull request 别人从你发布的版本上拉去fork版本 然后 对他的分支进行编写 在上传 看是否需要 需要会被采纳</p>
+</blockquote>
+<blockquote>
+<p>issues 提问题回答</p>
+</blockquote>
+<h2 id="3-git使用流程"><a href="#3-git使用流程" class="headerlink" title="3. git使用流程"></a>3. git使用流程</h2><ul>
+<li>选择</li>
+</ul>
 
-    <article>
-      <div class="row">
-
-        <div class="three columns left lit">
-          <p class="bottom">2024年4月25日</p>
-        </div>
-        <div class="nine columns left mb-3">
-          <a href="/2024/04/25/docker%E7%9A%84%E4%BD%BF%E7%94%A8/" class="">
-            
-              Docker操作
-            
-          </a>
-        </div>
-      </div>
-    </article>
-
-<div class="pagination-bar">
-  <ul class="pagination">
-    
-    
-  </ul>
-</div>
+  <p> — 2024年9月28日</p>
+  
 
 
         </div>
