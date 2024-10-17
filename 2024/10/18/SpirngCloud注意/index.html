@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+  <!-- Minima -->
+  <!-- Hexo theme created by @adisaktijrs -->
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+
+  
+  <title>SpirngCloud项目搭建项目注意要点</title>
+  
+  <link rel="canonical" href="http://example.com/2024/10/18/SpirngCloud%E6%B3%A8%E6%84%8F/">
+  
+  <meta name="description" content="SpirngCloud项目搭建项目注意要点  在父类pom.xml文件中可以规定子类的项目版本号  子类可以直接引用加版本号${satoken.version}   1234567891011121314151617181920212223242526272829303132333435363738">
+  
+  
+  <meta name="author" content="John Doe">
+  
+  
+  
+  <meta property="og:site_name" content="Hexo" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="SpirngCloud项目搭建项目注意要点" />
+  
+  <meta property="og:description" content="SpirngCloud项目搭建项目注意要点  在父类pom.xml文件中可以规定子类的项目版本号  子类可以直接引用加版本号${satoken.version}   1234567891011121314151617181920212223242526272829303132333435363738">
+  
+  <meta property="og:url" content="http://example.com/2024/10/18/SpirngCloud%E6%B3%A8%E6%84%8F/" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SpirngCloud项目搭建项目注意要点">
+  
+  <meta name="twitter:description" content="SpirngCloud项目搭建项目注意要点  在父类pom.xml文件中可以规定子类的项目版本号  子类可以直接引用加版本号${satoken.version}   1234567891011121314151617181920212223242526272829303132333435363738">
+  
+  
+  
+  
+  <meta name="twitter:url" content="http://example.com/2024/10/18/SpirngCloud%E6%B3%A8%E6%84%8F/" />
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Preload fonts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="preload" href="/fonts/dm-serif-display-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/inter-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+<link rel="stylesheet" href="/css/normalize.css">
+
+  
+<link rel="stylesheet" href="/css/skeleton.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+<link rel="stylesheet" href="/css/hljs.css">
+
+  <!-- 
+<link rel="stylesheet" href="/css/prism-dark.css">
+ -->
+  <!-- 
+<link rel="stylesheet" href="/css/prism-line-numbers.css">
+ -->
+  <!-- User css -->
+  
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+
+  <!-- Custom Theme Color Style
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <style>
+  a:not(.icon) {
+    text-decoration-color: #8F2323;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      #8F2323 50%
+    );
+  }
+  blockquote {
+    border-left: 8px solid #8F2323;
+  }
+  .nanobar .bar {
+    background: #8F2323;
+  }
+  .button.button-primary:hover,
+  button.button-primary:hover,
+  input[type="submit"].button-primary:hover,
+  input[type="reset"].button-primary:hover,
+  input[type="button"].button-primary:hover,
+  .button.button-primary:focus,
+  button.button-primary:focus,
+  input[type="submit"].button-primary:focus,
+  input[type="reset"].button-primary:focus,
+  input[type="button"].button-primary:focus {
+    background-color: #8F2323;
+    border-color: #8F2323;
+  }
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  input[type="search"]:focus,
+  input[type="text"]:focus,
+  input[type="tel"]:focus,
+  input[type="url"]:focus,
+  input[type="password"]:focus,
+  textarea:focus,
+  select:focus {
+    border: 1px solid #8F2323;
+  }
+</style>
+
+  <!-- Google Analytics (With Privacy Settings On)
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+
+  
+  <script src="/js/pic.min.js" defer></script>
+  
+
+  
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div>
+
+        <div class="row">
+  <div class="two columns" style="max-width: 50px">
+    <h1 class="mt-2 mode">
+      <div onclick=setDarkMode(true) id="darkBtn">🌒</div>
+      <div onclick=setDarkMode(false) id="lightBtn" class=hidden>🌝</div>
+      <script >
+        if (localStorage.getItem('preferredTheme') == 'dark') {
+          setDarkMode(true)
+        }
+        function setDarkMode(isDark) {
+          var darkBtn = document.getElementById('darkBtn')
+          var lightBtn = document.getElementById('lightBtn')
+          if (isDark) {
+            lightBtn.style.display = "block"
+            darkBtn.style.display = "none"
+            localStorage.setItem('preferredTheme', 'dark');
+          } else {
+            lightBtn.style.display = "none"
+            darkBtn.style.display = "block"
+            localStorage.removeItem('preferredTheme');
+          }
+          document.body.classList.toggle("darkmode");
+        }
+      </script>
+    </h1>
+  </div>
+
+  <div class="six columns ml-1">
+    <h1 class="mt-2">
+      Hi Jay.
+    </h1>
+  </div>
+
+  <div class="twelve columns">
+    <div class="row">
+      <div class="nine columns left">
+        <a href="/">Home</a>
+        
+          
+          <a href="/about" class="ml">About</a>
+          
+        
+        
+          
+            <a href="mailto:HurdJay@outlook.com" target="_blank" class="ml">Email</a>
+          
+        
+      </div>
+    </div>
+    <hr style="margin-bottom: 2.6rem">
+  </div>
+</div>
+
+        <div class="trans">
+            <h2>SpirngCloud项目搭建项目注意要点</h2>
+
+  <h1 id="SpirngCloud项目"><a href="#SpirngCloud项目" class="headerlink" title="SpirngCloud项目"></a>SpirngCloud项目</h1><h2 id="搭建项目注意要点"><a href="#搭建项目注意要点" class="headerlink" title="搭建项目注意要点"></a>搭建项目注意要点</h2><blockquote>
+<ol>
+<li>在父类pom.xml文件中可以规定子类的项目版本号 <dependencyManagement> 子类可以直接引用加版本号${satoken.version}</li>
+</ol>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">    &lt;properties&gt;</span><br><span class="line">        &lt;maven.compiler.source&gt;<span class="number">17</span>&lt;/maven.compiler.source&gt;</span><br><span class="line">        &lt;maven.compiler.target&gt;<span class="number">17</span>&lt;/maven.compiler.target&gt;</span><br><span class="line">        &lt;project.build.sourceEncoding&gt;UTF-<span class="number">8</span>&lt;/project.build.sourceEncoding&gt;</span><br><span class="line">        &lt;project.reporting.outputEncoding&gt;UTF-<span class="number">8</span>&lt;/project.reporting.outputEncoding&gt;</span><br><span class="line">        &lt;org.projectlombok.version&gt;<span class="number">1.18</span><span class="number">.20</span>&lt;/org.projectlombok.version&gt;</span><br><span class="line">        &lt;spring-cloud.version&gt;<span class="number">2021.0</span><span class="number">.3</span>&lt;/spring-cloud.version&gt;</span><br><span class="line">        &lt;spring-cloud-alibaba.version&gt;<span class="number">2021.0</span><span class="number">.4</span><span class="number">.0</span>&lt;/spring-cloud-alibaba.version&gt;</span><br><span class="line">        &lt;mybatis-plus.version&gt;<span class="number">3.4</span><span class="number">.2</span>&lt;/mybatis-plus.version&gt;</span><br><span class="line">        &lt;hutool.version&gt;<span class="number">5.8</span><span class="number">.11</span>&lt;/hutool.version&gt;</span><br><span class="line">        &lt;mysql.version&gt;<span class="number">8.0</span><span class="number">.33</span>&lt;/mysql.version&gt;</span><br><span class="line">        &lt;elasticsearch.version&gt;<span class="number">7.12</span><span class="number">.1</span>&lt;/elasticsearch.version&gt;</span><br><span class="line">        &lt;satoken.version&gt;<span class="number">1.39</span><span class="number">.0</span>&lt;/satoken.version&gt;</span><br><span class="line">        &lt;common.version&gt;<span class="number">3.9</span>&lt;/common.version&gt;</span><br><span class="line">        &lt;dubbo.version&gt;<span class="number">2.7</span><span class="number">.18</span>&lt;/dubbo.version&gt;</span><br><span class="line">    &lt;/properties&gt;</span><br><span class="line">      </span><br><span class="line">&lt;!-- 对依赖包进行管理 --&gt;</span><br><span class="line">    &lt;dependencyManagement&gt;</span><br><span class="line">        &lt;dependencies&gt;</span><br><span class="line">            &lt;!--spring cloud--&gt;</span><br><span class="line">            &lt;dependency&gt;</span><br><span class="line">                &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;</span><br><span class="line">                &lt;version&gt;$&#123;spring-cloud.version&#125;&lt;/version&gt;</span><br><span class="line">                &lt;type&gt;pom&lt;/type&gt;</span><br><span class="line">                &lt;scope&gt;<span class="keyword">import</span>&lt;/scope&gt;</span><br><span class="line">            &lt;/dependency&gt;</span><br><span class="line">            &lt;!--spring cloud alibaba--&gt;</span><br><span class="line">            &lt;dependency&gt;</span><br><span class="line">                &lt;groupId&gt;com.alibaba.cloud&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;spring-cloud-alibaba-dependencies&lt;/artifactId&gt;</span><br><span class="line">                &lt;version&gt;$&#123;spring-cloud-alibaba.version&#125;&lt;/version&gt;</span><br><span class="line">                &lt;type&gt;pom&lt;/type&gt;</span><br><span class="line">                &lt;scope&gt;<span class="keyword">import</span>&lt;/scope&gt;</span><br><span class="line">            &lt;/dependency&gt;</span><br><span class="line">            &lt;!-- 数据库驱动包管理 --&gt;</span><br><span class="line">            &lt;dependency&gt;</span><br><span class="line">                &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line"></span><br><span class="line">            &lt;/dependency&gt;</span><br><span class="line">            &lt;!-- mybatis plus 管理 --&gt;</span><br><span class="line">            &lt;dependency&gt;</span><br><span class="line">                &lt;groupId&gt;com.baomidou&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;mybatis-plus-boot-starter&lt;/artifactId&gt;</span><br><span class="line">            &lt;/dependency&gt;</span><br><span class="line">            &lt;!--hutool工具包--&gt;</span><br><span class="line">            &lt;dependency&gt;</span><br><span class="line">                &lt;groupId&gt;cn.hutool&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;hutool-all&lt;/artifactId&gt;</span><br><span class="line">                &lt;version&gt;$&#123;hutool.version&#125;&lt;/version&gt;</span><br><span class="line">            &lt;/dependency&gt;</span><br><span class="line">            &lt;dependency&gt;</span><br><span class="line">                &lt;groupId&gt;cn.dev33&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;sa-token-reactor-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">            &lt;/dependency&gt;</span><br><span class="line">            &lt;!-- Dubbo 核心依赖 --&gt;</span><br><span class="line">            &lt;dependency&gt;</span><br><span class="line">                &lt;groupId&gt;org.apache.dubbo&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;dubbo&lt;/artifactId&gt;</span><br><span class="line">            &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">            &lt;!-- Dubbo Spring Boot Starter --&gt;</span><br><span class="line">            &lt;dependency&gt;</span><br><span class="line">                &lt;groupId&gt;org.apache.dubbo&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;dubbo-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">            &lt;/dependency&gt;</span><br><span class="line">        &lt;/dependencies&gt;</span><br><span class="line"> &lt;/dependencyManagement&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ol start="2">
+<li>创建包的时候也有细节 下面展示父类项目pom</li>
+</ol>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;groupId&gt;cn.jjayhu&lt;/groupId&gt;  					<span class="comment">// 所有微服务都以cn.jjayhu命名包</span></span><br><span class="line">&lt;artifactId&gt;cloudTemplate&lt;/artifactId&gt;	</span><br><span class="line">&lt;version&gt;$&#123;revision&#125;&lt;/version&gt;				</span><br></pre></td></tr></table></figure>
+
+<p>但是在common下面不一样需要额外加一个包</p>
+<p>![image-20241013005617175](..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20241013005617175.png)</p>
+<p>在别的模块引入的时候可以选择要扫描什么包 如果引入了common所有的但是只要core包就可以启动类加上</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication(scanBasePackages = &quot;com.cart.core.*&quot;)</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="1-1创建步骤"><a href="#1-1创建步骤" class="headerlink" title="1.1创建步骤"></a>1.1创建步骤</h3><p>在父类pom里</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="line">&lt;project xmlns=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> xmlns:xsi=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="line">         xsi:schemaLocation=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span><br><span class="line">    &lt;modelVersion&gt;<span class="number">4.0</span><span class="number">.0</span>&lt;/modelVersion&gt;</span><br><span class="line">    &lt;groupId&gt;cn.jjayhu&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;cloudTemplate&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;$&#123;revision&#125;&lt;/version&gt;    <span class="comment">// 2.引用版本号</span></span><br><span class="line">    &lt;packaging&gt;pom&lt;/packaging&gt;</span><br><span class="line">    &lt;name&gt;cloudTemplate&lt;/name&gt;</span><br><span class="line">    &lt;description&gt;cloudTemplate &lt;/description&gt;</span><br><span class="line">    &lt;modules&gt;												<span class="comment">// 3.引入子类服务</span></span><br><span class="line">        &lt;<span class="keyword">module</span>&gt;web&lt;/<span class="keyword">module</span>&gt;</span><br><span class="line">        &lt;<span class="keyword">module</span>&gt;common&lt;/<span class="keyword">module</span>&gt;</span><br><span class="line">    &lt;/modules&gt;</span><br><span class="line">    &lt;properties&gt;</span><br><span class="line">        &lt;revision&gt;<span class="number">1.0</span><span class="number">.0</span>&lt;/revision&gt;					<span class="comment">// 1.规定了父的版本号</span></span><br><span class="line">        &lt;common.version&gt;<span class="number">2.0</span><span class="number">.0</span>&lt;/common.version&gt;</span><br><span class="line">        &lt;java.version&gt;<span class="number">17</span>&lt;/java.version&gt;</span><br><span class="line">        &lt;project.build.sourceEncoding&gt;UTF-<span class="number">8</span>&lt;/project.build.sourceEncoding&gt;</span><br><span class="line">        &lt;project.reporting.outputEncoding&gt;UTF-<span class="number">8</span>&lt;/project.reporting.outputEncoding&gt;</span><br><span class="line">        &lt;spring-boot.version&gt;<span class="number">2.6</span><span class="number">.13</span>&lt;/spring-boot.version&gt;</span><br><span class="line">        &lt;hutool.version&gt;<span class="number">5.8</span><span class="number">.31</span>&lt;/hutool.version&gt;</span><br><span class="line">        &lt;flatten-maven-plugin.version&gt;<span class="number">1.3</span><span class="number">.0</span>&lt;/flatten-maven-plugin.version&gt;</span><br><span class="line">    &lt;/properties&gt;</span><br><span class="line">    &lt;dependencyManagement&gt; 										<span class="comment">// 4. 合理规划所有包的管理</span></span><br><span class="line">        &lt;dependencies&gt;</span><br><span class="line">            &lt;dependency&gt;</span><br><span class="line">                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;spring-boot-dependencies&lt;/artifactId&gt;</span><br><span class="line">                &lt;version&gt;$&#123;spring-boot.version&#125;&lt;/version&gt;</span><br><span class="line">                &lt;type&gt;pom&lt;/type&gt;</span><br><span class="line">                &lt;scope&gt;<span class="keyword">import</span>&lt;/scope&gt;</span><br><span class="line">            &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">            &lt;dependency&gt;</span><br><span class="line">                &lt;groupId&gt;cn.jjayhu&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;common-bom&lt;/artifactId&gt;   <span class="comment">// 5. bom作用管理common所有服务</span></span><br><span class="line">                &lt;version&gt;$&#123;common.version&#125;&lt;/version&gt;</span><br><span class="line">                &lt;type&gt;pom&lt;/type&gt;</span><br><span class="line">                &lt;scope&gt;<span class="keyword">import</span>&lt;/scope&gt;</span><br><span class="line">            &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">            &lt;dependency&gt;</span><br><span class="line">                &lt;groupId&gt;cn.hutool&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;hutool-bom&lt;/artifactId&gt;</span><br><span class="line">                &lt;version&gt;$&#123;hutool.version&#125;&lt;/version&gt;</span><br><span class="line">                &lt;type&gt;pom&lt;/type&gt;</span><br><span class="line">                &lt;scope&gt;<span class="keyword">import</span>&lt;/scope&gt;</span><br><span class="line">            &lt;/dependency&gt;</span><br><span class="line">        &lt;/dependencies&gt;</span><br><span class="line">    &lt;/dependencyManagement&gt;</span><br><span class="line"></span><br><span class="line">    &lt;build&gt;</span><br><span class="line">        &lt;plugins&gt;</span><br><span class="line"></span><br><span class="line">            &lt;!-- 统一版本号管理 --&gt;							<span class="comment">// 2. 这是2的核心部分</span></span><br><span class="line">            &lt;plugin&gt;</span><br><span class="line">                &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;flatten-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">                &lt;version&gt;$&#123;flatten-maven-plugin.version&#125;&lt;/version&gt;</span><br><span class="line">                &lt;configuration&gt;</span><br><span class="line">                    &lt;updatePomFile&gt;<span class="literal">true</span>&lt;/updatePomFile&gt;</span><br><span class="line">                    &lt;flattenMode&gt;resolveCiFriendliesOnly&lt;/flattenMode&gt;</span><br><span class="line">                &lt;/configuration&gt;</span><br><span class="line">                &lt;executions&gt;</span><br><span class="line">                    &lt;execution&gt;</span><br><span class="line">                        &lt;id&gt;flatten&lt;/id&gt;</span><br><span class="line">                        &lt;phase&gt;process-resources&lt;/phase&gt;</span><br><span class="line">                        &lt;goals&gt;</span><br><span class="line">                            &lt;goal&gt;flatten&lt;/goal&gt;</span><br><span class="line">                        &lt;/goals&gt;</span><br><span class="line">                    &lt;/execution&gt;</span><br><span class="line">                    &lt;execution&gt;</span><br><span class="line">                        &lt;id&gt;flatten.clean&lt;/id&gt;</span><br><span class="line">                        &lt;phase&gt;clean&lt;/phase&gt;</span><br><span class="line">                        &lt;goals&gt;</span><br><span class="line">                            &lt;goal&gt;clean&lt;/goal&gt;</span><br><span class="line">                        &lt;/goals&gt;</span><br><span class="line">                    &lt;/execution&gt;</span><br><span class="line">                &lt;/executions&gt;</span><br><span class="line">            &lt;/plugin&gt;</span><br><span class="line"></span><br><span class="line">            &lt;plugin&gt;</span><br><span class="line">                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;</span><br><span class="line">                &lt;version&gt;<span class="number">3.8</span><span class="number">.1</span>&lt;/version&gt;</span><br><span class="line">                &lt;configuration&gt;</span><br><span class="line">                    &lt;source&gt;<span class="number">17</span>&lt;/source&gt;</span><br><span class="line">                    &lt;target&gt;<span class="number">17</span>&lt;/target&gt;</span><br><span class="line">                    &lt;encoding&gt;UTF-<span class="number">8</span>&lt;/encoding&gt;</span><br><span class="line">                &lt;/configuration&gt;</span><br><span class="line">            &lt;/plugin&gt;</span><br><span class="line">            &lt;plugin&gt;</span><br><span class="line">                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">                &lt;version&gt;$&#123;spring-boot.version&#125;&lt;/version&gt;</span><br><span class="line">                &lt;configuration&gt;</span><br><span class="line">                    &lt;mainClass&gt;cn.jjayhu.cloudTemplate.CloudTemplateApplication&lt;/mainClass&gt;</span><br><span class="line">                    &lt;skip&gt;<span class="literal">true</span>&lt;/skip&gt;</span><br><span class="line">                &lt;/configuration&gt;</span><br><span class="line">                &lt;executions&gt;</span><br><span class="line">                    &lt;execution&gt;</span><br><span class="line">                        &lt;id&gt;repackage&lt;/id&gt;</span><br><span class="line">                        &lt;goals&gt;</span><br><span class="line">                            &lt;goal&gt;repackage&lt;/goal&gt;</span><br><span class="line">                        &lt;/goals&gt;</span><br><span class="line">                    &lt;/execution&gt;</span><br><span class="line">                &lt;/executions&gt;</span><br><span class="line">            &lt;/plugin&gt;</span><br><span class="line">        &lt;/plugins&gt;</span><br><span class="line">    &lt;/build&gt;</span><br><span class="line"></span><br><span class="line">&lt;/project&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>1.1.1bom详细介绍</strong></p>
+</blockquote>
+<ul>
+<li>在common下面已经建好一个common-core服务</li>
+<li>在common-bom里面引入dependencyManagement</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="line">&lt;project xmlns=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span><br><span class="line">         xmlns:xsi=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="line">         xsi:schemaLocation=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span><br><span class="line">    &lt;modelVersion&gt;<span class="number">4.0</span><span class="number">.0</span>&lt;/modelVersion&gt;</span><br><span class="line"></span><br><span class="line">    &lt;groupId&gt;cn.jjayhu&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;common-bom&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;$&#123;revision&#125;&lt;/version&gt;</span><br><span class="line"></span><br><span class="line">    &lt;properties&gt;</span><br><span class="line">        &lt;revision&gt;<span class="number">2.0</span><span class="number">.0</span>&lt;/revision&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/properties&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &lt;dependencyManagement&gt; 						<span class="comment">// 这边</span></span><br><span class="line">        &lt;dependencies&gt;</span><br><span class="line">            &lt;dependency&gt;</span><br><span class="line">                &lt;groupId&gt;cn.jjayhu&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;common-core&lt;/artifactId&gt;</span><br><span class="line">                &lt;version&gt;$&#123;revision&#125;&lt;/version&gt;</span><br><span class="line">            &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">            &lt;dependency&gt;</span><br><span class="line">                &lt;groupId&gt;cn.jjayhu&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;common-mybatis&lt;/artifactId&gt;</span><br><span class="line">                &lt;version&gt;$&#123;revision&#125;&lt;/version&gt;</span><br><span class="line">            &lt;/dependency&gt;</span><br><span class="line">        &lt;/dependencies&gt;</span><br><span class="line">    &lt;/dependencyManagement&gt;</span><br><span class="line"></span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>最后再总的父类 直接引入bom</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencyManagement&gt;</span><br><span class="line">					  &lt;dependency&gt;</span><br><span class="line">                &lt;groupId&gt;cn.jjayhu&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;common-bom&lt;/artifactId&gt;</span><br><span class="line">                &lt;version&gt;$&#123;common.version&#125;&lt;/version&gt;</span><br><span class="line">                &lt;type&gt;pom&lt;/type&gt;</span><br><span class="line">                &lt;scope&gt;<span class="keyword">import</span>&lt;/scope&gt;</span><br><span class="line">            &lt;/dependency&gt;</span><br><span class="line">&lt;/dependencyManagement&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>目的	为了在写业务服务的时候直接引入 bom下面的 core 	</p>
+<p>​				就是我不需要引入整一个bom 当我只用到里面一个的时候选择想要的即可</p>
+<p>(虽然建立在common项目下面)</p>
+</blockquote>
+<blockquote>
+<p><strong>1.1.2bom版本介绍</strong></p>
+</blockquote>
+<p>bom可以脱离整个项目版本号单独存在</p>
+<p>![image-20241013010608733](..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20241013010608733.png)</p>
+<p>如果不指定在子类里面指向的就是最高父类的</p>
+<p>![image-20241013010701609](..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20241013010701609.png)</p>
+<h2 id="2-开新服务注意"><a href="#2-开新服务注意" class="headerlink" title="2.开新服务注意"></a>2.开新服务注意</h2><ul>
+<li>开一个新服务的时候需要在父类里注册  例如新建一个cart-auth服务</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  &lt;modules&gt;</span><br><span class="line">			&lt;<span class="keyword">module</span>&gt;cart-auth&lt;/<span class="keyword">module</span>&gt;</span><br><span class="line">&lt;/modules&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在cartauth服务里面 resources资源里面 bootstrap.yaml 得把 服务名字改为cart-auth 注册到nacos上</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line"><span class="comment">//   name: cart-auth  # 1.核心服务名</span></span><br><span class="line">  profiles:</span><br><span class="line">    active: dev</span><br><span class="line">  cloud:</span><br><span class="line">    nacos:</span><br><span class="line">      # nacos 服务地址 <span class="number">2.</span>核心nacos地址</span><br><span class="line">      server-addr: <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8848</span></span><br><span class="line">      username: nacos</span><br><span class="line">      password: nacos</span><br><span class="line">      discovery:</span><br><span class="line">        # 注册组</span><br><span class="line">        group: DEFAULT_GROUP</span><br><span class="line">        namespace: dev</span><br><span class="line">      config:</span><br><span class="line">        # 配置组</span><br><span class="line">        group: DEFAULT_GROUP</span><br><span class="line">        namespace: dev</span><br><span class="line">        file-extension: yaml # 文件后缀名</span><br><span class="line">        shared-configs: # 共享配置</span><br><span class="line">          - dataId: shared-jdbc.yaml # 共享mybatis配置</span><br><span class="line">          - dataId: shared-log.yaml # 共享日志配置</span><br><span class="line">          - dataId: shared-satoken.yaml</span><br></pre></td></tr></table></figure>
+
+
+
+
+  <p> — 2024年10月18日</p>
+  
+
+
+        </div>
+        <!-- <div class="row mt-2">
+  <h3>Search</h3>
+  <div><input id="search-text" title="search" class="search-text" type="text" placeholder="search......"></div>
+  <div style="margin-top: 1.5rem;">
+    <ul id="result"></ul>
+  </div>
+</div> -->
+        <div class="row mt-2">
+  
+    <div class="eight columns">
+      <p id="madewith">Made with ❤ and
+        <a class="footer-link icon" href="https://hexo.io" target="_blank" style="text-decoration: none;" rel="noreferrer" aria-label="Hexo.io">
+        <svg class="hexo svg-hov" width="14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Hexo.js</title><path d="M12 .007L1.57 6.056V18.05L12 23.995l10.43-6.049V5.952L12 .007zm4.798 17.105l-.939.521-.939-.521V12.94H9.08v4.172l-.94.521-.938-.521V6.89l.939-.521.939.521v4.172h5.84V6.89l.94-.521.938.521v10.222z"/></svg>
+        </a>
+        
+        at <a href="https://en.wikipedia.org/wiki/Earth" target="_blank" rel="noreferrer">Earth</a>.</p>
+        
+    </div>
+
+    <!-- Sepcial thanks to https://simpleicons.org/ for the icons -->
+    <div class="four columns mb-3 posisi" >
+      
+      <a class="ml-0 footer-link icon" href="https://github.com/yexinhendadejie" target="_blank" style="text-decoration: none" rel="noreferrer" aria-label="GitHub">
+        <svg class="github svg-hov" width="18" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      
+
+      
+
+      
+
+      
+
+      
+
+    </div>
+  
+</div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <script src="/js/nanobar.min.js"></script>
+
+  <script>
+    var options = {
+      classname: 'nanobar',
+      id: 'myNanobar'
+    };
+    var nanobar = new Nanobar(options);
+    nanobar.go(30);
+    nanobar.go(76);
+    nanobar.go(100);
+  </script>
+
+</body>
+
+</html>

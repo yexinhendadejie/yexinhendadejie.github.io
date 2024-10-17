@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+  <!-- Minima -->
+  <!-- Hexo theme created by @adisaktijrs -->
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+
+  
+  <title>nacos注册到docker上</title>
+  
+  <link rel="canonical" href="http://example.com/2024/10/18/nacos%E6%B3%A8%E5%86%8C%E5%88%B0docker/">
+  
+  <meta name="description" content="nacos注册到docker上 主要笔记是mysql跑在容器里nacos如何操作  1.拉取镜像12拉取镜像docker pull nacos/nacos-server  2.创建一个nacos文件用于存储映射1mkdir /data/docker/nacos -p   可以手动创建  ![imag">
+  
+  
+  <meta name="author" content="John Doe">
+  
+  
+  
+  <meta property="og:site_name" content="Hexo" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="nacos注册到docker上" />
+  
+  <meta property="og:description" content="nacos注册到docker上 主要笔记是mysql跑在容器里nacos如何操作  1.拉取镜像12拉取镜像docker pull nacos/nacos-server  2.创建一个nacos文件用于存储映射1mkdir /data/docker/nacos -p   可以手动创建  ![imag">
+  
+  <meta property="og:url" content="http://example.com/2024/10/18/nacos%E6%B3%A8%E5%86%8C%E5%88%B0docker/" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="nacos注册到docker上">
+  
+  <meta name="twitter:description" content="nacos注册到docker上 主要笔记是mysql跑在容器里nacos如何操作  1.拉取镜像12拉取镜像docker pull nacos/nacos-server  2.创建一个nacos文件用于存储映射1mkdir /data/docker/nacos -p   可以手动创建  ![imag">
+  
+  
+  
+  
+  <meta name="twitter:url" content="http://example.com/2024/10/18/nacos%E6%B3%A8%E5%86%8C%E5%88%B0docker/" />
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Preload fonts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="preload" href="/fonts/dm-serif-display-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/inter-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+<link rel="stylesheet" href="/css/normalize.css">
+
+  
+<link rel="stylesheet" href="/css/skeleton.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+<link rel="stylesheet" href="/css/hljs.css">
+
+  <!-- 
+<link rel="stylesheet" href="/css/prism-dark.css">
+ -->
+  <!-- 
+<link rel="stylesheet" href="/css/prism-line-numbers.css">
+ -->
+  <!-- User css -->
+  
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+
+  <!-- Custom Theme Color Style
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <style>
+  a:not(.icon) {
+    text-decoration-color: #8F2323;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      #8F2323 50%
+    );
+  }
+  blockquote {
+    border-left: 8px solid #8F2323;
+  }
+  .nanobar .bar {
+    background: #8F2323;
+  }
+  .button.button-primary:hover,
+  button.button-primary:hover,
+  input[type="submit"].button-primary:hover,
+  input[type="reset"].button-primary:hover,
+  input[type="button"].button-primary:hover,
+  .button.button-primary:focus,
+  button.button-primary:focus,
+  input[type="submit"].button-primary:focus,
+  input[type="reset"].button-primary:focus,
+  input[type="button"].button-primary:focus {
+    background-color: #8F2323;
+    border-color: #8F2323;
+  }
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  input[type="search"]:focus,
+  input[type="text"]:focus,
+  input[type="tel"]:focus,
+  input[type="url"]:focus,
+  input[type="password"]:focus,
+  textarea:focus,
+  select:focus {
+    border: 1px solid #8F2323;
+  }
+</style>
+
+  <!-- Google Analytics (With Privacy Settings On)
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+
+  
+  <script src="/js/pic.min.js" defer></script>
+  
+
+  
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div>
+
+        <div class="row">
+  <div class="two columns" style="max-width: 50px">
+    <h1 class="mt-2 mode">
+      <div onclick=setDarkMode(true) id="darkBtn">🌒</div>
+      <div onclick=setDarkMode(false) id="lightBtn" class=hidden>🌝</div>
+      <script >
+        if (localStorage.getItem('preferredTheme') == 'dark') {
+          setDarkMode(true)
+        }
+        function setDarkMode(isDark) {
+          var darkBtn = document.getElementById('darkBtn')
+          var lightBtn = document.getElementById('lightBtn')
+          if (isDark) {
+            lightBtn.style.display = "block"
+            darkBtn.style.display = "none"
+            localStorage.setItem('preferredTheme', 'dark');
+          } else {
+            lightBtn.style.display = "none"
+            darkBtn.style.display = "block"
+            localStorage.removeItem('preferredTheme');
+          }
+          document.body.classList.toggle("darkmode");
+        }
+      </script>
+    </h1>
+  </div>
+
+  <div class="six columns ml-1">
+    <h1 class="mt-2">
+      Hi Jay.
+    </h1>
+  </div>
+
+  <div class="twelve columns">
+    <div class="row">
+      <div class="nine columns left">
+        <a href="/">Home</a>
+        
+          
+          <a href="/about" class="ml">About</a>
+          
+        
+        
+          
+            <a href="mailto:HurdJay@outlook.com" target="_blank" class="ml">Email</a>
+          
+        
+      </div>
+    </div>
+    <hr style="margin-bottom: 2.6rem">
+  </div>
+</div>
+
+        <div class="trans">
+            <h2>nacos注册到docker上</h2>
+
+  <h1 id="nacos注册到docker上"><a href="#nacos注册到docker上" class="headerlink" title="nacos注册到docker上"></a>nacos注册到docker上</h1><ul>
+<li>主要笔记是mysql跑在容器里nacos如何操作</li>
+</ul>
+<h2 id="1-拉取镜像"><a href="#1-拉取镜像" class="headerlink" title="1.拉取镜像"></a>1.拉取镜像</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">拉取镜像</span><br><span class="line">docker pull nacos/nacos-server</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-创建一个nacos文件用于存储映射"><a href="#2-创建一个nacos文件用于存储映射" class="headerlink" title="2.创建一个nacos文件用于存储映射"></a>2.创建一个nacos文件用于存储映射</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir /data/docker/nacos -p</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>可以手动创建</p>
+</blockquote>
+<p>![image-20241017234617368](&#x2F;Users&#x2F;yexinhendadejie&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20241017234617368.png)</p>
+<h2 id="3-nacos配置文件获取"><a href="#3-nacos配置文件获取" class="headerlink" title="3.nacos配置文件获取"></a>3.nacos配置文件获取</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">docker  run -d  --name nacos  \</span><br><span class="line">-p <span class="number">8848</span>:<span class="number">8848</span>  \</span><br><span class="line">-p <span class="number">9848</span>:<span class="number">9848</span>  \</span><br><span class="line">-p <span class="number">9849</span>:<span class="number">9849</span>  \</span><br><span class="line">--privileged=<span class="literal">true</span>  \</span><br><span class="line">--restart=always  \</span><br><span class="line">-v /etc/localtime:/etc/localtime:ro  \</span><br><span class="line">-e TZ=Asia/Shanghai \</span><br><span class="line">-e LANG=en_US.UTF-<span class="number">8</span> \</span><br><span class="line">-e JVM_XMS=256m  \</span><br><span class="line">-e JVM_XMX=256m  \</span><br><span class="line">-e MODE=standalone  \</span><br><span class="line">nacos/nacos-server:latest</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-1-拷贝容器中的数据到宿主机对应的目录下"><a href="#3-1-拷贝容器中的数据到宿主机对应的目录下" class="headerlink" title="3.1 拷贝容器中的数据到宿主机对应的目录下"></a>3.1 拷贝容器中的数据到宿主机对应的目录下</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker cp <span class="attr">nacos</span>:<span class="regexp">/home/</span>nacos/conf /<span class="title class_">Users</span>/yexinhendadejie/<span class="title class_">Documents</span>/docker/nacos/conf</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2停止-删除容器"><a href="#3-2停止-删除容器" class="headerlink" title="3.2停止&amp;删除容器"></a>3.2停止&amp;删除容器</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm -f nacos</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3修改配置文件"><a href="#3-3修改配置文件" class="headerlink" title="3.3修改配置文件"></a>3.3修改配置文件</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /Users/yexinhendadejie/Documents/docker/nacos/conf/application.properties</span><br></pre></td></tr></table></figure>
+
+<p>参考</p>
+<blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">&gt;# spring</span><br><span class="line">&gt;server.servlet.contextPath=$&#123;SERVER_SERVLET_CONTEXTPATH:/nacos&#125;</span><br><span class="line">&gt;server.contextPath=/nacos</span><br><span class="line">&gt;server.port=$&#123;NACOS_APPLICATION_PORT:<span class="number">8848</span>&#125;</span><br><span class="line">&gt;server.tomcat.accesslog.max-days=<span class="number">30</span></span><br><span class="line">&gt;server.tomcat.accesslog.pattern=%h %l %u %t <span class="string">&quot;%r&quot;</span> %s %b %D %&#123;User-Agent&#125;i %&#123;Request-Source&#125;i</span><br><span class="line">&gt;server.tomcat.accesslog.enabled=$&#123;TOMCAT_ACCESSLOG_ENABLED:<span class="literal">false</span>&#125;</span><br><span class="line">&gt;server.error.include-message=ALWAYS</span><br><span class="line">&gt;# <span class="keyword">default</span> current work dir</span><br><span class="line">&gt;server.tomcat.basedir=file:.</span><br><span class="line">&gt;#*************** Config Module Related Configurations ***************#</span><br><span class="line">&gt;### Deprecated configuration property, it is recommended to use `spring.sql.init.platform` replaced.</span><br><span class="line">&gt;#spring.datasource.platform=$&#123;SPRING_DATASOURCE_PLATFORM:&#125;</span><br><span class="line">&gt;spring.sql.init.platform=mysql</span><br><span class="line">&gt;nacos.cmdb.dumpTaskInterval=<span class="number">3600</span></span><br><span class="line">&gt;nacos.cmdb.eventTaskInterval=<span class="number">10</span></span><br><span class="line">&gt;nacos.cmdb.labelTaskInterval=<span class="number">300</span></span><br><span class="line">&gt;nacos.cmdb.loadDataAtStart=<span class="literal">false</span></span><br><span class="line">&gt;db.num=<span class="number">1</span></span><br><span class="line">&gt;db.url<span class="number">.0</span>=jdbc:mysql:<span class="comment">//mysql:3306/nacos?characterEncoding=utf8&amp;connectTimeout=1000&amp;socketTimeout=3000&amp;autoReconnect=true&amp;useUnicode=true&amp;useSSL=false&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true  // 这边下面有标注为什么是mysql</span></span><br><span class="line">&gt;db.user<span class="number">.0</span>=root</span><br><span class="line">&gt;db.password<span class="number">.0</span>=<span class="number">123456</span></span><br><span class="line">&gt;## DB connection pool settings</span><br><span class="line">&gt;db.pool.config.connectionTimeout=$&#123;DB_POOL_CONNECTION_TIMEOUT:<span class="number">30000</span>&#125;</span><br><span class="line">&gt;db.pool.config.validationTimeout=<span class="number">10000</span></span><br><span class="line">&gt;db.pool.config.maximumPoolSize=<span class="number">20</span></span><br><span class="line">&gt;db.pool.config.minimumIdle=<span class="number">2</span></span><br><span class="line">&gt;### The auth system to use, currently only <span class="string">&#x27;nacos&#x27;</span> and <span class="string">&#x27;ldap&#x27;</span> is supported:</span><br><span class="line">&gt;nacos.core.auth.system.type=$&#123;NACOS_AUTH_SYSTEM_TYPE:nacos&#125;</span><br><span class="line">&gt;nacos.core.auth.enabled=<span class="literal">true</span></span><br><span class="line">&gt;### worked when nacos.core.auth.system.type=nacos</span><br><span class="line">&gt;### The token expiration in seconds:</span><br><span class="line">&gt;nacos.core.auth.plugin.nacos.token.expire.seconds=$&#123;NACOS_AUTH_TOKEN_EXPIRE_SECONDS:<span class="number">18000</span>&#125;</span><br><span class="line">&gt;### The <span class="keyword">default</span> token:</span><br><span class="line">&gt;nacos.core.auth.plugin.nacos.token.secret.key=VGhpc0lzTXlDdXN0b21TZWNyZXRLZXkwMTIzNDU2Nzg=</span><br><span class="line">&gt;### Turn on/off caching of auth information. By turning on <span class="built_in">this</span> <span class="keyword">switch</span>, the update of auth information would have a <span class="number">15</span> seconds delay.</span><br><span class="line">&gt;nacos.core.auth.caching.enabled=<span class="literal">true</span></span><br><span class="line">&gt;nacos.core.auth.enable.userAgentAuthWhite=$&#123;NACOS_AUTH_USER_AGENT_AUTH_WHITE_ENABLE:<span class="literal">false</span>&#125;</span><br><span class="line">&gt;nacos.core.auth.server.identity.key=nacos</span><br><span class="line">&gt;nacos.core.auth.server.identity.value=nacos</span><br><span class="line">&gt;## spring security config</span><br><span class="line">&gt;### turn off security</span><br><span class="line">&gt;nacos.security.ignore.urls=$&#123;NACOS_SECURITY_IGNORE_URLS:/,/error,<span class="comment">/**/*.css,/**/</span>*.js,<span class="comment">/**/*.html,/**/</span>*.map,<span class="comment">/**/*.svg,/**/</span>*.png,<span class="comment">/**/*.ico,/console-fe/public/**,/v1/auth/**,/v1/console/health/**,/actuator/**,/v1/console/server/**&#125;</span></span><br><span class="line"><span class="comment">&gt;# metrics for elastic search</span></span><br><span class="line"><span class="comment">&gt;management.metrics.export.elastic.enabled=false</span></span><br><span class="line"><span class="comment">&gt;management.metrics.export.influx.enabled=false</span></span><br><span class="line"><span class="comment">&gt;nacos.naming.distro.taskDispatchThreadCount=10</span></span><br><span class="line"><span class="comment">&gt;nacos.naming.distro.taskDispatchPeriod=200</span></span><br><span class="line"><span class="comment">&gt;nacos.naming.distro.batchSyncKeyCount=1000</span></span><br><span class="line"><span class="comment">&gt;nacos.naming.distro.initDataRatio=0.9</span></span><br><span class="line"><span class="comment">&gt;nacos.naming.distro.syncRetryDelay=5000</span></span><br><span class="line"><span class="comment">&gt;nacos.naming.data.warmup=true</span></span><br><span class="line"><span class="comment">&gt;nacos.console.ui.enabled=true</span></span><br><span class="line"><span class="comment">&gt;nacos.core.param.check.enabled=true</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="4-创建数据库-省略"><a href="#4-创建数据库-省略" class="headerlink" title="4.创建数据库(省略)"></a>4.创建数据库(省略)</h3><h3 id="5-运行容器"><a href="#5-运行容器" class="headerlink" title="5.运行容器"></a>5.运行容器</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name nacos \</span><br><span class="line">-p <span class="number">8848</span>:<span class="number">8848</span> \</span><br><span class="line">-p <span class="number">9848</span>:<span class="number">9848</span> \</span><br><span class="line">-p <span class="number">9849</span>:<span class="number">9849</span> \</span><br><span class="line">--privileged=<span class="literal">true</span> \</span><br><span class="line">--restart=always \</span><br><span class="line">--network=storage \  				<span class="comment">// 让nacos和mysql同一个网段</span></span><br><span class="line">-v /Users/yexinhendadejie/Documents/docker/nacos/logs:/home/nacos/logs \ <span class="comment">//写反了会出现500的错误代码</span></span><br><span class="line">-v /Users/yexinhendadejie/Documents/docker/nacos/data:/home/nacos/data \</span><br><span class="line">-v /Users/yexinhendadejie/Documents/docker/nacos/conf:/home/nacos/conf \</span><br><span class="line">-v /etc/localtime:/etc/localtime:ro \</span><br><span class="line">-e TZ=Asia/Shanghai \</span><br><span class="line">-e LANG=en_US.UTF-<span class="number">8</span> \</span><br><span class="line">-e JVM_XMS=256m \</span><br><span class="line">-e JVM_XMX=256m \</span><br><span class="line">-e MODE=standalone \</span><br><span class="line">-e PREFER_HOST_MODE=hostname \</span><br><span class="line">nacos/nacos-server:latest</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>重点 按照道理说结束了 但是我的mysql跑在docker上并且有一个网段(docker network ls)可以查看所有网段</p>
+<ul>
+<li><p>可以通过grc mysql查看容器	</p>
+</li>
+<li><p>同一个网段下可以直接指向例如上面为什么是mysql:3306</p>
+</li>
+<li><p><strong>(重点)</strong> mysql容器的127.0.0.1 和 宿主机(本机)不是同一个 所以上面如果是db.url.0&#x3D;jdbc:mysql:&#x2F;&#x2F;127.0.0.1:3307&#x2F;nacos 就毁了 踩坑!!!!!! </p>
+</li>
+<li><p>需要做的是创建容器的时候和mysql同网段</p>
+</li>
+</ul>
+</blockquote>
+<p>![ ](&#x2F;Users&#x2F;yexinhendadejie&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20241018000934342.png)</p>
+
+  <p> — 2024年10月18日</p>
+  
+
+
+        </div>
+        <!-- <div class="row mt-2">
+  <h3>Search</h3>
+  <div><input id="search-text" title="search" class="search-text" type="text" placeholder="search......"></div>
+  <div style="margin-top: 1.5rem;">
+    <ul id="result"></ul>
+  </div>
+</div> -->
+        <div class="row mt-2">
+  
+    <div class="eight columns">
+      <p id="madewith">Made with ❤ and
+        <a class="footer-link icon" href="https://hexo.io" target="_blank" style="text-decoration: none;" rel="noreferrer" aria-label="Hexo.io">
+        <svg class="hexo svg-hov" width="14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Hexo.js</title><path d="M12 .007L1.57 6.056V18.05L12 23.995l10.43-6.049V5.952L12 .007zm4.798 17.105l-.939.521-.939-.521V12.94H9.08v4.172l-.94.521-.938-.521V6.89l.939-.521.939.521v4.172h5.84V6.89l.94-.521.938.521v10.222z"/></svg>
+        </a>
+        
+        at <a href="https://en.wikipedia.org/wiki/Earth" target="_blank" rel="noreferrer">Earth</a>.</p>
+        
+    </div>
+
+    <!-- Sepcial thanks to https://simpleicons.org/ for the icons -->
+    <div class="four columns mb-3 posisi" >
+      
+      <a class="ml-0 footer-link icon" href="https://github.com/yexinhendadejie" target="_blank" style="text-decoration: none" rel="noreferrer" aria-label="GitHub">
+        <svg class="github svg-hov" width="18" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      
+
+      
+
+      
+
+      
+
+      
+
+    </div>
+  
+</div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <script src="/js/nanobar.min.js"></script>
+
+  <script>
+    var options = {
+      classname: 'nanobar',
+      id: 'myNanobar'
+    };
+    var nanobar = new Nanobar(options);
+    nanobar.go(30);
+    nanobar.go(76);
+    nanobar.go(100);
+  </script>
+
+</body>
+
+</html>
