@@ -15,7 +15,7 @@
   
   <link rel="canonical" href="http://example.com/2024/10/18/nacos%E6%B3%A8%E5%86%8C%E5%88%B0docker/">
   
-  <meta name="description" content="nacos注册到docker上 主要笔记是mysql跑在容器里nacos如何操作  1.拉取镜像12拉取镜像docker pull nacos/nacos-server  2.创建一个nacos文件用于存储映射1mkdir /data/docker/nacos -p   可以手动创建  ![imag">
+  <meta name="description" content="nacos注册到docker上 主要笔记是mysql跑在容器里nacos如何操作  1.拉取镜像12拉取镜像docker pull nacos/nacos-server  2.创建一个nacos文件用于存储映射1mkdir /data/docker/nacos -p   可以手动创建  3.naco">
   
   
   <meta name="author" content="John Doe">
@@ -26,14 +26,14 @@
   <meta property="og:type" content="article" />
   <meta property="og:title" content="nacos注册到docker上" />
   
-  <meta property="og:description" content="nacos注册到docker上 主要笔记是mysql跑在容器里nacos如何操作  1.拉取镜像12拉取镜像docker pull nacos/nacos-server  2.创建一个nacos文件用于存储映射1mkdir /data/docker/nacos -p   可以手动创建  ![imag">
+  <meta property="og:description" content="nacos注册到docker上 主要笔记是mysql跑在容器里nacos如何操作  1.拉取镜像12拉取镜像docker pull nacos/nacos-server  2.创建一个nacos文件用于存储映射1mkdir /data/docker/nacos -p   可以手动创建  3.naco">
   
   <meta property="og:url" content="http://example.com/2024/10/18/nacos%E6%B3%A8%E5%86%8C%E5%88%B0docker/" />
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="nacos注册到docker上">
   
-  <meta name="twitter:description" content="nacos注册到docker上 主要笔记是mysql跑在容器里nacos如何操作  1.拉取镜像12拉取镜像docker pull nacos/nacos-server  2.创建一个nacos文件用于存储映射1mkdir /data/docker/nacos -p   可以手动创建  ![imag">
+  <meta name="twitter:description" content="nacos注册到docker上 主要笔记是mysql跑在容器里nacos如何操作  1.拉取镜像12拉取镜像docker pull nacos/nacos-server  2.创建一个nacos文件用于存储映射1mkdir /data/docker/nacos -p   可以手动创建  3.naco">
   
   
   
@@ -202,8 +202,8 @@
 <blockquote>
 <p>可以手动创建</p>
 </blockquote>
-<p>![image-20241017234617368](&#x2F;Users&#x2F;yexinhendadejie&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20241017234617368.png)</p>
-<h2 id="3-nacos配置文件获取"><a href="#3-nacos配置文件获取" class="headerlink" title="3.nacos配置文件获取"></a>3.nacos配置文件获取</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">docker  run -d  --name nacos  \</span><br><span class="line">-p <span class="number">8848</span>:<span class="number">8848</span>  \</span><br><span class="line">-p <span class="number">9848</span>:<span class="number">9848</span>  \</span><br><span class="line">-p <span class="number">9849</span>:<span class="number">9849</span>  \</span><br><span class="line">--privileged=<span class="literal">true</span>  \</span><br><span class="line">--restart=always  \</span><br><span class="line">-v /etc/localtime:/etc/localtime:ro  \</span><br><span class="line">-e TZ=Asia/Shanghai \</span><br><span class="line">-e LANG=en_US.UTF-<span class="number">8</span> \</span><br><span class="line">-e JVM_XMS=256m  \</span><br><span class="line">-e JVM_XMX=256m  \</span><br><span class="line">-e MODE=standalone  \</span><br><span class="line">nacos/nacos-server:latest</span><br></pre></td></tr></table></figure>
+<h2 id="3-nacos配置文件获取"><a href="#3-nacos配置文件获取" class="headerlink" title="3.nacos配置文件获取"></a>3.nacos配置文件获取</h2><p><img src="/../images/nacos1.png" alt="nacos1"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">docker  run -d  --name nacos  \</span><br><span class="line">-p <span class="number">8848</span>:<span class="number">8848</span>  \</span><br><span class="line">-p <span class="number">9848</span>:<span class="number">9848</span>  \</span><br><span class="line">-p <span class="number">9849</span>:<span class="number">9849</span>  \</span><br><span class="line">--privileged=<span class="literal">true</span>  \</span><br><span class="line">--restart=always  \</span><br><span class="line">-v /etc/localtime:/etc/localtime:ro  \</span><br><span class="line">-e TZ=Asia/Shanghai \</span><br><span class="line">-e LANG=en_US.UTF-<span class="number">8</span> \</span><br><span class="line">-e JVM_XMS=256m  \</span><br><span class="line">-e JVM_XMX=256m  \</span><br><span class="line">-e MODE=standalone  \</span><br><span class="line">nacos/nacos-server:latest</span><br></pre></td></tr></table></figure>
 
 <h3 id="3-1-拷贝容器中的数据到宿主机对应的目录下"><a href="#3-1-拷贝容器中的数据到宿主机对应的目录下" class="headerlink" title="3.1 拷贝容器中的数据到宿主机对应的目录下"></a>3.1 拷贝容器中的数据到宿主机对应的目录下</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker cp <span class="attr">nacos</span>:<span class="regexp">/home/</span>nacos/conf /<span class="title class_">Users</span>/yexinhendadejie/<span class="title class_">Documents</span>/docker/nacos/conf</span><br></pre></td></tr></table></figure>
 
@@ -230,8 +230,8 @@
 </li>
 </ul>
 </blockquote>
-<p>![ ](&#x2F;Users&#x2F;yexinhendadejie&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20241018000934342.png)</p>
-<p>![5521729321577_.pic](..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;Library&#x2F;Containers&#x2F;com.tencent.xinWeChat&#x2F;Data&#x2F;Library&#x2F;Application Support&#x2F;com.tencent.xinWeChat&#x2F;2.0b4.0.9&#x2F;538275db5ca2a93c9cf2c404d6c8f6bb&#x2F;Message&#x2F;MessageTemp&#x2F;9e20f478899dc29eb19741386f9343c8&#x2F;Image&#x2F;5521729321577_.pic.jpg)</p>
+<p><img src="/../images/nacos2.png" alt=" "></p>
+<p><img src="/../images/nacos3.png" alt="nacos3"></p>
 
   <p> — 2024年10月18日</p>
   
