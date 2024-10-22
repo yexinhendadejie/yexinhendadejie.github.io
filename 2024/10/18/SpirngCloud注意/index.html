@@ -207,7 +207,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;groupId&gt;cn.jjayhu&lt;/groupId&gt;  					<span class="comment">// 所有微服务都以cn.jjayhu命名包</span></span><br><span class="line">&lt;artifactId&gt;cloudTemplate&lt;/artifactId&gt;	</span><br><span class="line">&lt;version&gt;$&#123;revision&#125;&lt;/version&gt;				</span><br></pre></td></tr></table></figure>
 
 <p>但是在common下面不一样需要额外加一个包</p>
-<p>![image-20241013005617175](..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20241013005617175.png)</p>
+<p><img src="/../images/springCloud1.png" alt="image-20241013005617175"></p>
 <p>在别的模块引入的时候可以选择要扫描什么包 如果引入了common所有的但是只要core包就可以启动类加上</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication(scanBasePackages = &quot;com.cart.core.*&quot;)</span></span><br></pre></td></tr></table></figure>
 
@@ -239,9 +239,9 @@
 <p><strong>1.1.2bom版本介绍</strong></p>
 </blockquote>
 <p>bom可以脱离整个项目版本号单独存在</p>
-<p>![image-20241013010608733](..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20241013010608733.png)</p>
+<p><img src="/../images/springCloud2.png" alt="image-20241013010608733"></p>
 <p>如果不指定在子类里面指向的就是最高父类的</p>
-<p>![image-20241013010701609](..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20241013010701609.png)</p>
+<p><img src="/../images/springCloud3.png" alt="image-20241013010701609"></p>
 <h2 id="2-开新服务注意"><a href="#2-开新服务注意" class="headerlink" title="2.开新服务注意"></a>2.开新服务注意</h2><ul>
 <li>开一个新服务的时候需要在父类里注册  例如新建一个cart-auth服务</li>
 </ul>
