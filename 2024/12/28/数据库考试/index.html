@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+  <!-- Minima -->
+  <!-- Hexo theme created by @adisaktijrs -->
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+
+  
+  <title>数据库复习</title>
+  
+  <link rel="canonical" href="http://example.com/2024/12/28/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%80%83%E8%AF%95/">
+  
+  <meta name="description" content="数据库考试1.E-R图 1.1画出E-R图判断实体之间是什么类型 先画图再去判断实体之间是什么类型 （1:1 1:n n:m)  1.2并根据e-r图给出关系模式（数据表结构） 1:1类型  1&amp;gt;//直接写  1:n类型 12&amp;gt;//n端 自己本身属性&amp;gt;//1端的主键+联系的属性  ">
+  
+  
+  <meta name="author" content="John Doe">
+  
+  
+  
+  <meta property="og:site_name" content="Hexo" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="数据库复习" />
+  
+  <meta property="og:description" content="数据库考试1.E-R图 1.1画出E-R图判断实体之间是什么类型 先画图再去判断实体之间是什么类型 （1:1 1:n n:m)  1.2并根据e-r图给出关系模式（数据表结构） 1:1类型  1&amp;gt;//直接写  1:n类型 12&amp;gt;//n端 自己本身属性&amp;gt;//1端的主键+联系的属性  ">
+  
+  <meta property="og:url" content="http://example.com/2024/12/28/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%80%83%E8%AF%95/" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="数据库复习">
+  
+  <meta name="twitter:description" content="数据库考试1.E-R图 1.1画出E-R图判断实体之间是什么类型 先画图再去判断实体之间是什么类型 （1:1 1:n n:m)  1.2并根据e-r图给出关系模式（数据表结构） 1:1类型  1&amp;gt;//直接写  1:n类型 12&amp;gt;//n端 自己本身属性&amp;gt;//1端的主键+联系的属性  ">
+  
+  
+  
+  
+  <meta name="twitter:url" content="http://example.com/2024/12/28/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%80%83%E8%AF%95/" />
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Preload fonts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="preload" href="/fonts/dm-serif-display-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/inter-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+<link rel="stylesheet" href="/css/normalize.css">
+
+  
+<link rel="stylesheet" href="/css/skeleton.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+<link rel="stylesheet" href="/css/hljs.css">
+
+  <!-- 
+<link rel="stylesheet" href="/css/prism-dark.css">
+ -->
+  <!-- 
+<link rel="stylesheet" href="/css/prism-line-numbers.css">
+ -->
+  <!-- User css -->
+  
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+
+  <!-- Custom Theme Color Style
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <style>
+  a:not(.icon) {
+    text-decoration-color: #8F2323;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      #8F2323 50%
+    );
+  }
+  blockquote {
+    border-left: 8px solid #8F2323;
+  }
+  .nanobar .bar {
+    background: #8F2323;
+  }
+  .button.button-primary:hover,
+  button.button-primary:hover,
+  input[type="submit"].button-primary:hover,
+  input[type="reset"].button-primary:hover,
+  input[type="button"].button-primary:hover,
+  .button.button-primary:focus,
+  button.button-primary:focus,
+  input[type="submit"].button-primary:focus,
+  input[type="reset"].button-primary:focus,
+  input[type="button"].button-primary:focus {
+    background-color: #8F2323;
+    border-color: #8F2323;
+  }
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  input[type="search"]:focus,
+  input[type="text"]:focus,
+  input[type="tel"]:focus,
+  input[type="url"]:focus,
+  input[type="password"]:focus,
+  textarea:focus,
+  select:focus {
+    border: 1px solid #8F2323;
+  }
+</style>
+
+  <!-- Google Analytics (With Privacy Settings On)
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+
+  
+  <script src="/js/pic.min.js" defer></script>
+  
+
+  
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div>
+
+        <div class="row">
+  <div class="two columns" style="max-width: 50px">
+    <h1 class="mt-2 mode">
+      <div onclick=setDarkMode(true) id="darkBtn">🌒</div>
+      <div onclick=setDarkMode(false) id="lightBtn" class=hidden>🌝</div>
+      <script >
+        if (localStorage.getItem('preferredTheme') == 'dark') {
+          setDarkMode(true)
+        }
+        function setDarkMode(isDark) {
+          var darkBtn = document.getElementById('darkBtn')
+          var lightBtn = document.getElementById('lightBtn')
+          if (isDark) {
+            lightBtn.style.display = "block"
+            darkBtn.style.display = "none"
+            localStorage.setItem('preferredTheme', 'dark');
+          } else {
+            lightBtn.style.display = "none"
+            darkBtn.style.display = "block"
+            localStorage.removeItem('preferredTheme');
+          }
+          document.body.classList.toggle("darkmode");
+        }
+      </script>
+    </h1>
+  </div>
+
+  <div class="six columns ml-1">
+    <h1 class="mt-2">
+      Hi Jay.
+    </h1>
+  </div>
+
+  <div class="twelve columns">
+    <div class="row">
+      <div class="nine columns left">
+        <a href="/">Home</a>
+        
+          
+          <a href="/about" class="ml">About</a>
+          
+        
+        
+          
+            <a href="mailto:HurdJay@outlook.com" target="_blank" class="ml">Email</a>
+          
+        
+      </div>
+    </div>
+    <hr style="margin-bottom: 2.6rem">
+  </div>
+</div>
+
+        <div class="trans">
+            <h2>数据库复习</h2>
+
+  <h1 id="数据库考试"><a href="#数据库考试" class="headerlink" title="数据库考试"></a>数据库考试</h1><h2 id="1-E-R图"><a href="#1-E-R图" class="headerlink" title="1.E-R图"></a>1.E-R图</h2><p><img src="/Users/yexinhendadejie/Documents/docs/hexo/HurdJay/source/images/E-R%E5%9B%BE1.png" alt="image-20241228172525647"></p>
+<h3 id="1-1画出E-R图判断实体之间是什么类型"><a href="#1-1画出E-R图判断实体之间是什么类型" class="headerlink" title="1.1画出E-R图判断实体之间是什么类型"></a>1.1画出E-R图判断实体之间是什么类型</h3><p><img src="/Users/yexinhendadejie/Documents/docs/hexo/HurdJay/source/images/E-R%E5%9B%BE2.png" alt="image-20241228173104023"></p>
+<p>先画图再去判断实体之间是什么类型 （1:1 1:n n:m)</p>
+<p><img src="/Users/yexinhendadejie/Documents/docs/hexo/HurdJay/source/images/E-R%E5%9B%BE3.png" alt="image-20241228174132079"></p>
+<h3 id="1-2并根据e-r图给出关系模式（数据表结构）"><a href="#1-2并根据e-r图给出关系模式（数据表结构）" class="headerlink" title="1.2并根据e-r图给出关系模式（数据表结构）"></a>1.2并根据e-r图给出关系模式（数据表结构）</h3><blockquote>
+<p><strong>1:1类型</strong> </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">//直接写</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>1:n类型</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">//n端 自己本身属性</span></span><br><span class="line">&gt;<span class="comment">//1端的主键+联系的属性</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>n:m类型</strong> 最后会产生三个关系</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">//m自己写自己的 </span></span><br><span class="line">&gt;<span class="comment">//n自己写自己的 </span></span><br><span class="line">&gt;<span class="comment">//还有一个 联系属性+各自主键</span></span><br><span class="line">&gt;最后会产生三个关系</span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
+<hr>
+<blockquote>
+<p>商店(商店号、商店名、地址)</p>
+<p>职工(职工号、姓名、性别、开始时间、商店号)</p>
+<p>商品(商品号、商品名、单价)</p>
+<p><strong>经营(月销售量、商品号、商店号)</strong></p>
+</blockquote>
+<h2 id="2-关系模式"><a href="#2-关系模式" class="headerlink" title="2.关系模式"></a>2.关系模式</h2><h3 id="2-1范式"><a href="#2-1范式" class="headerlink" title="2.1范式"></a>2.1范式</h3><blockquote>
+<p><strong>1NF:</strong> 基本都符合1NF</p>
+<p><strong>2NF:</strong> 每一个非主属性完全依赖于候选码(<strong>没有部分依赖</strong>)</p>
+<p>**3NF:**既不传递依赖，也不部分依赖</p>
+<p>**BCNF:**所有决定因素都是主属性(c-&gt;a a-&gt;b a和c都是候选键，那么这个关系符合BCNF)</p>
+</blockquote>
+<p> 当一个元素组合能推出关系中所有元素，则称为候选码</p>
+<h3 id="例一"><a href="#例一" class="headerlink" title="例一:"></a>例一:</h3><p><img src="/Users/yexinhendadejie/Documents/docs/hexo/HurdJay/source/images/sql%E6%95%B0%E6%8D%AE%E5%BA%931.png" alt="image-20241228161235336"></p>
+<hr>
+<h3 id="例二"><a href="#例二" class="headerlink" title="例二:"></a>例二:</h3><p><img src="/Users/yexinhendadejie/Documents/docs/hexo/HurdJay/source/images/sql%E6%95%B0%E6%8D%AE%E5%BA%932.png" alt="image-20241228161055601"></p>
+<blockquote>
+<p>过程: </p>
+<p><strong>依赖关系</strong></p>
+<p>学号-&gt;姓名 学号-&gt;年龄 学号-&gt;性别 学号-&gt;系名 系名-&gt;系主任  (学号、课程名)-&gt;成绩</p>
+<p><strong>主码(能推出全部的):</strong></p>
+<p><code>(学号,课程名)</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;判断依据:</span><br><span class="line">&gt;姓名依赖于学号 年龄依赖于学号 性别依赖于学号 存在部分依赖 所以不是2NF 所以是1NF</span><br></pre></td></tr></table></figure>
+
+
+
+<p>改为2FN(<strong>判断有没有部分依赖</strong>)</p>
+<p>R1(学号、姓名、性别、年龄、系名、系主任)</p>
+<p>R2(学号、课程名、成绩)</p>
+<p>改为3FN(<strong>判断有没有传递依赖</strong>)</p>
+<p>R1(学号、姓名、性别、年龄)</p>
+<p>R2(系名、系主任)</p>
+<p>R3(学号、课程名、成绩)</p>
+</blockquote>
+<h3 id="例3"><a href="#例3" class="headerlink" title="例3"></a>例3</h3><p><img src="/Users/yexinhendadejie/Documents/docs/hexo/HurdJay/source/images/sql%E6%95%B0%E6%8D%AE%E5%BA%933.png" alt="image-20241228162947690"></p>
+<blockquote>
+<p>过程: </p>
+<p><strong>依赖关系</strong></p>
+<p>(员工编号、日期)-&gt;零件数  员工编号-&gt;部门名称 部门名称-&gt;经理</p>
+<p><strong>主码(能推出全部的):</strong></p>
+<p><code>(员工编号、日期)</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;判断依据:</span><br><span class="line">&gt;零件数依赖于员工编号日期 部门名称依赖于员工编号 经理依赖于部门名称 </span><br></pre></td></tr></table></figure>
+
+
+
+<p>改为2FN(<strong>判断有没有部分依赖</strong>)</p>
+<p>R1(员工编号、日期、零件数)</p>
+<p>R2(员工编号、部门名称、经理)</p>
+<p>改为3FN(<strong>判断有没有传递依赖</strong>)</p>
+<p>R1(员工编号、日期、零件数)</p>
+<p>R2(员工编号、部门名称)</p>
+<p>R3(部门名称、经理)</p>
+</blockquote>
+<h3 id="例4"><a href="#例4" class="headerlink" title="例4"></a>例4</h3><p>已知某现实世界涉及到学生、教师和课程的关系模式STC （SNO，SNAME，SAGE，TNO，TNAME，TDEPT，CNO，CNAME，GRADE），其中属性分别为学生的学号，学生姓名，学生年龄，教师号，教师名，教师所在系，课号，课程名和成绩。假设学生、教师、课程名有重名，每个教师只教一门课，一门课可有几个教师开设。当某个学生选定某门课后，其上课教师就固定了。</p>
+<p>1)找出该模式的主关键字和函数依赖关系(4分)</p>
+<p>2)该模式属于第几范式？化为BCNF范式(6分)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1)SNO→SNAME,SAGE（学生学号可以决定学生姓名和学生年龄）</span><br><span class="line">TNO→TNAME,TDEPT（教师号可以决定教师姓名和教师所在系）</span><br><span class="line">CNO→CNAME（课程号可以决定课程名称）</span><br><span class="line">SNO,CNO→TNO,GRADE（学生学号和课程号可以决定教师号和成绩）</span><br><span class="line">TNO,CNO→GRADE（教师号和课程号可以决定成绩）</span><br><span class="line"></span><br><span class="line">2)1NF</span><br><span class="line">学生(SNO, SNAME, SAGE)；</span><br><span class="line">课程(CNO, CNAME)；</span><br><span class="line">教师(TNO, TNAME, TDEPT)；</span><br><span class="line">选课(SNO, CNO, TNO, GRADE)，其中(SNO, CNO)是主键。</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-sql语句"><a href="#3-sql语句" class="headerlink" title="3.sql语句"></a>3.sql语句</h2><h2 id="4-关系代数"><a href="#4-关系代数" class="headerlink" title="4.关系代数"></a>4.关系代数</h2>
+  <p> — 2024年12月28日</p>
+  
+
+
+        </div>
+        <!-- <div class="row mt-2">
+  <h3>Search</h3>
+  <div><input id="search-text" title="search" class="search-text" type="text" placeholder="search......"></div>
+  <div style="margin-top: 1.5rem;">
+    <ul id="result"></ul>
+  </div>
+</div> -->
+        <div class="row mt-2">
+  
+    <div class="eight columns">
+      <p id="madewith">Made with ❤ and
+        <a class="footer-link icon" href="https://hexo.io" target="_blank" style="text-decoration: none;" rel="noreferrer" aria-label="Hexo.io">
+        <svg class="hexo svg-hov" width="14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Hexo.js</title><path d="M12 .007L1.57 6.056V18.05L12 23.995l10.43-6.049V5.952L12 .007zm4.798 17.105l-.939.521-.939-.521V12.94H9.08v4.172l-.94.521-.938-.521V6.89l.939-.521.939.521v4.172h5.84V6.89l.94-.521.938.521v10.222z"/></svg>
+        </a>
+        
+        at <a href="https://en.wikipedia.org/wiki/Earth" target="_blank" rel="noreferrer">Earth</a>.</p>
+        
+    </div>
+
+    <!-- Sepcial thanks to https://simpleicons.org/ for the icons -->
+    <div class="four columns mb-3 posisi" >
+      
+      <a class="ml-0 footer-link icon" href="https://github.com/yexinhendadejie" target="_blank" style="text-decoration: none" rel="noreferrer" aria-label="GitHub">
+        <svg class="github svg-hov" width="18" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      
+
+      
+
+      
+
+      
+
+      
+
+    </div>
+  
+</div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <script src="/js/nanobar.min.js"></script>
+
+  <script>
+    var options = {
+      classname: 'nanobar',
+      id: 'myNanobar'
+    };
+    var nanobar = new Nanobar(options);
+    nanobar.go(30);
+    nanobar.go(76);
+    nanobar.go(100);
+  </script>
+
+</body>
+
+</html>
