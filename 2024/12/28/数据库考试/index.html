@@ -219,7 +219,7 @@
 <p><strong>1NF:</strong> 基本都符合1NF</p>
 <p><strong>2NF:</strong> 每一个非主属性完全依赖于候选码(<strong>没有部分依赖</strong>)</p>
 <p><strong>3NF:</strong> 既不传递依赖，也不部分依赖</p>
-<p>**BCNF: ** 所有决定因素都是主属性(c-&gt;a a-&gt;b a和c都是候选键，那么这个关系符合BCNF)</p>
+<p><strong>BCNF:</strong> 所有决定因素都是主属性(c-&gt;a a-&gt;b a和c都是候选键，那么这个关系符合BCNF)</p>
 </blockquote>
 <p> 当一个元素组合能推出关系中所有元素，则称为候选码</p>
 <h3 id="例一"><a href="#例一" class="headerlink" title="例一:"></a>例一:</h3><p><img src="/../images/sql-1.png" alt="image-20241228161235336"></p>
@@ -269,7 +269,45 @@
 
 
 
-<h2 id="3-sql语句"><a href="#3-sql语句" class="headerlink" title="3.sql语句"></a>3.sql语句</h2><h2 id="4-关系代数"><a href="#4-关系代数" class="headerlink" title="4.关系代数"></a>4.关系代数</h2><p><strong>Student</strong> 表：学生信息，包含 sno,sname,ssex,sage,sdept。</p>
+<h2 id="3-sql语句"><a href="#3-sql语句" class="headerlink" title="3.sql语句"></a>3.sql语句</h2><p>增加</p>
+<blockquote>
+<p><code>INSERT INTO</code> 表名 (列1, 列2, …, 列N)  <code>VALUES </code> (值1, 值2, …, 值N);</p>
+</blockquote>
+<p>修改</p>
+<blockquote>
+<p><code>UPDATE</code>  表名  <code>SET</code> 列1 &#x3D; 值1, 列2 &#x3D; 值2, … WHERE 条件;</p>
+</blockquote>
+<p>已知某现实世界涉及到学生、教师和课程的关系模式S（SNO，SNAME，SAGE），T（TNO，TNAME，TDEPT），C（CNO，CNAME），STC（SNO，CNO，GRADE），TC（TNO，CNO）其中属性分别为学生的学号，学生姓名，学生年龄，教师号，教师名，教师所在系，课号，课程名和成绩。带下划线的是主码，STC中CNO是外键。 根据以上规范用SQL语言实现下列功能： </p>
+<p>1．创建表STC（SNO，CNO，GRADE），各属性类型自定义； </p>
+<blockquote>
+<p><code>CREATE TABLE</code> STC (<br>   SNO VARCHAR(10) NOT NULL,    – 学生学号<br>   CNO VARCHAR(10) NOT NULL,    – 课程编号<br>   GRADE INT,                   – 成绩<br>   <code>PRIMARY KEY</code> (SNO, CNO),      – 主码<br>   <code>FOREIGN KEY</code> (CNO) <code>REFERENCES</code> C(CNO) – 外键，引用课程表的CNO<br>);</p>
+</blockquote>
+<p>2．一个编号为‘100100’的教师新开设了一门编号为‘1991’名为‘数据仓库’的课；</p>
+<blockquote>
+<p>– 向课程表插入新课程<br>INSERT INTO C (CNO, CNAME) VALUES (‘1991’, ‘数据仓库’);</p>
+<p>– 将课程与教师关联<br>INSERT INTO TC (TNO, CNO) VALUES (‘100100’, ‘1991’);</p>
+</blockquote>
+<p> 3．查询“李易”老师上的课程的课号和课程名字；</p>
+<blockquote>
+<p>SELECT TC.CNO, C.CNAME<br>FROM TC<br>JOIN T ON TC.TNO &#x3D; T.TNO<br>JOIN C ON TC.CNO &#x3D; C.CNO<br>WHERE T.TNAME &#x3D; ‘李易’;</p>
+</blockquote>
+<p> 4．查询学号为‘95001’的学生‘操作系统’的考试成绩;</p>
+<blockquote>
+<p>SELECT STC.GRADE<br>FROM STC<br>JOIN C ON STC.CNO &#x3D; C.CNO<br>WHERE STC.SNO &#x3D; ‘95001’ AND C.CNAME &#x3D; ‘操作系统’;</p>
+</blockquote>
+<p> 5．创建‘数据库原理’上课教师的视图；</p>
+<blockquote>
+<p>CREATE VIEW DatabaseTeachers AS<br>SELECT T.TNO, T.TNAME, T.TDEPT<br>FROM TC<br>JOIN T ON TC.TNO &#x3D; T.TNO<br>JOIN C ON TC.CNO &#x3D; C.CNO<br>WHERE C.CNAME &#x3D; ‘数据库原理’;</p>
+</blockquote>
+<p> 6．统计每门课学生的考试情况； </p>
+<blockquote>
+<p>SELECT C.CNO, C.CNAME, COUNT(STC.SNO) AS StudentCount, AVG(STC.GRADE) AS AverageGrade,<br>      MIN(STC.GRADE) AS MinGrade, MAX(STC.GRADE) AS MaxGrade<br>FROM STC<br>JOIN C ON STC.CNO &#x3D; C.CNO<br>GROUP BY C.CNO, C.CNAME;</p>
+</blockquote>
+<p>7．删除学生‘95100’。</p>
+<blockquote>
+<p>DELETE FROM STC WHERE SNO &#x3D; ‘95100’; – 删除学生在STC表中的相关记录<br>DELETE FROM S WHERE SNO &#x3D; ‘95100’;   – 删除学生表中的记录</p>
+</blockquote>
+<h2 id="4-关系代数"><a href="#4-关系代数" class="headerlink" title="4.关系代数"></a>4.关系代数</h2><p><strong>Student</strong> 表：学生信息，包含 sno,sname,ssex,sage,sdept。</p>
 <p><strong>SC</strong> 表：学生选课信息，包含sno,cno,grade。</p>
 <p><strong>Course</strong> 表：课程信息，包含cno,cname,tname。</p>
 <ul>
