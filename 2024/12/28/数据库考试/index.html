@@ -269,7 +269,188 @@
 
 
 
-<h2 id="3-sql语句"><a href="#3-sql语句" class="headerlink" title="3.sql语句"></a>3.sql语句</h2><h2 id="4-关系代数"><a href="#4-关系代数" class="headerlink" title="4.关系代数"></a>4.关系代数</h2>
+<h2 id="3-sql语句"><a href="#3-sql语句" class="headerlink" title="3.sql语句"></a>3.sql语句</h2><h2 id="4-关系代数"><a href="#4-关系代数" class="headerlink" title="4.关系代数"></a>4.关系代数</h2><p><strong>Student</strong> 表：学生信息，包含 sno,sname,ssex,sage,sdept。</p>
+<p><strong>SC</strong> 表：学生选课信息，包含sno,cno,grade。</p>
+<p><strong>Course</strong> 表：课程信息，包含cno,cname,tname。</p>
+<ul>
+<li>检索liu老师所授课程的课程号、课程名</li>
+</ul>
+<blockquote>
+<p>π cno,cname  (σ tname&#x3D; ′ Liu ′  (Course))</p>
+</blockquote>
+<ul>
+<li>检索年龄大于23岁的男学生的学号与姓名</li>
+</ul>
+<blockquote>
+<p>π sno,sname  (<code>σ sage&gt;23∧ssex=′男′(Student))</code> </p>
+<p>这边第二个条件不需要再次写<code>σ</code></p>
+</blockquote>
+<ul>
+<li>检索学号为c3学生所学课程的课程名与任课教师名</li>
+</ul>
+<blockquote>
+<p>π cname,tname  ((σ sno&#x3D; ′ c3 ′  (SC⋈Course)))</p>
+</blockquote>
+<ul>
+<li>查询年龄小于20岁的男学生的学号、姓名和年龄</li>
+</ul>
+<blockquote>
+<p>π sno,sname,sage  (σ sage&lt;20∧ssex&#x3D;′男′(Student))</p>
+</blockquote>
+<ul>
+<li>检索选修课程号为c3的学生学号和姓名</li>
+</ul>
+<blockquote>
+<p>π sno,sname  ((σ cno&#x3D; ′ c3 ′ (SC⋈Student)))</p>
+<p>思路: sc 和 course表都有共同cno(课程号) 用cno连接之后的效果是</p>
+<h3 id="Student-表"><a href="#Student-表" class="headerlink" title="Student 表"></a>Student 表</h3><table>
+<thead>
+<tr>
+<th>sno</th>
+<th>sname</th>
+<th>ssex</th>
+<th>sage</th>
+<th>sdept</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>s001</td>
+<td>张三</td>
+<td>男</td>
+<td>20</td>
+<td>计算机</td>
+</tr>
+<tr>
+<td>s002</td>
+<td>李四</td>
+<td>女</td>
+<td>21</td>
+<td>数学</td>
+</tr>
+<tr>
+<td>s003</td>
+<td>王五</td>
+<td>男</td>
+<td>22</td>
+<td>英语</td>
+</tr>
+<tr>
+<td>s004</td>
+<td>赵六</td>
+<td>女</td>
+<td>23</td>
+<td>物理</td>
+</tr>
+</tbody></table>
+<h3 id="SC-表"><a href="#SC-表" class="headerlink" title="SC 表"></a>SC 表</h3><table>
+<thead>
+<tr>
+<th>sno</th>
+<th>cno</th>
+<th>grade</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>s001</td>
+<td>c1</td>
+<td>85</td>
+</tr>
+<tr>
+<td>s002</td>
+<td>c3</td>
+<td>90</td>
+</tr>
+<tr>
+<td>s003</td>
+<td>c3</td>
+<td>88</td>
+</tr>
+<tr>
+<td>s004</td>
+<td>c2</td>
+<td>92</td>
+</tr>
+</tbody></table>
+<h3 id="SC⋈Student"><a href="#SC⋈Student" class="headerlink" title="SC⋈Student"></a><strong>SC⋈Student</strong></h3><table>
+<thead>
+<tr>
+<th>sno</th>
+<th>sname</th>
+<th>ssex</th>
+<th>sage</th>
+<th>sdept</th>
+<th>cno</th>
+<th>grade</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>s002</td>
+<td>李四</td>
+<td>女</td>
+<td>21</td>
+<td>数学</td>
+<td>c3</td>
+<td>90</td>
+</tr>
+<tr>
+<td>s003</td>
+<td>王五</td>
+<td>男</td>
+<td>22</td>
+<td>英语</td>
+<td>c3</td>
+<td>88</td>
+</tr>
+</tbody></table>
+</blockquote>
+<hr>
+<ul>
+<li>检索Wang同学没有选修的课程的课程号</li>
+</ul>
+<blockquote>
+<p><code>π cno(Course) - π cno(σ sname=&#39;Wang&#39; (Student ⨝ SC))</code></p>
+</blockquote>
+<ul>
+<li>查询3号学生没有选修的课程名</li>
+</ul>
+<blockquote>
+<p>π tname(Course) - π tname(σ sno&#x3D;’s003’ (Student ⨝ SC) ⨝ Course)</p>
+</blockquote>
+<hr>
+<ul>
+<li>查询至少选修了数据库的学生学号(   至少 全部用➗   )</li>
+</ul>
+<blockquote>
+<p>π sno, cno (SC) ➗ π cno (σ cname&#x3D;’数据库’ (Course)))</p>
+<p>思路:  要得到学生学号 sc表中有 sno cno course表中有cno  </p>
+<p><code>用中间表的总的 去除以 条件表！！！！！</code></p>
+<ol>
+<li>从 COURSE 表找出李军老师教授的所有课程号</li>
+<li>从 SC 表找出选修了这些全部课程的学生号</li>
+<li>从 S 表找出这些学生的姓名</li>
+</ol>
+</blockquote>
+<ul>
+<li>检索选修了全部课程的学生姓名</li>
+</ul>
+<blockquote>
+<p>π sname (πsno、cno(SC) ➗ π cno (Course) ⨝ Stduent)	</p>
+</blockquote>
+<ul>
+<li>检索全部学生都选修的课程号与课程名</li>
+</ul>
+<blockquote>
+<p>π cno、cname (πsno、cno(SC) ➗ π sno (Student) ⨝Course)	</p>
+</blockquote>
+<p><img src="/../images/daishu1.png" alt="image-20241229163511644"></p>
+<p>第五题 乘法</p>
+<blockquote>
+<p>π c# (σ 1&#x3D;4 ∧ 2≠5(SCXSC))	</p>
+<p>用sc和sc连接 </p>
+<p>第一列是S# 第四列是S# 让学号一致</p>
+<p>第二列是C# 第五列也是C# <strong>让左边选课不等于右边</strong></p>
+</blockquote>
+
   <p> — 2024年12月28日</p>
   
 
