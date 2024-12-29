@@ -15,7 +15,7 @@
   
   <link rel="canonical" href="http://example.com/2024/12/28/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%80%83%E8%AF%95/">
   
-  <meta name="description" content="数据库考试1.E-R图 1.1画出E-R图判断实体之间是什么类型 先画图再去判断实体之间是什么类型 （1:1 1:n n:m)  1.2并根据e-r图给出关系模式（数据表结构） 1:1类型  1&amp;gt;//直接写  1:n类型 12&amp;gt;//n端 自己本身属性&amp;gt;//1端的主键+联系的属性  ">
+  <meta name="description" content="数据库考试1.E-R图 1.1画出E-R图判断实体之间是什么类型 先画图再去判断实体之间是什么类型 （1:1 1:n n:m)  1.2并根据e-r图给出关系模式（数据表结构） 1:1类型  1&amp;gt;直接写  1:n类型 12&amp;gt;n端 自己本身属性&amp;gt;1端的主键+联系的属性  n:m类型 ">
   
   
   <meta name="author" content="John Doe">
@@ -26,14 +26,14 @@
   <meta property="og:type" content="article" />
   <meta property="og:title" content="数据库复习" />
   
-  <meta property="og:description" content="数据库考试1.E-R图 1.1画出E-R图判断实体之间是什么类型 先画图再去判断实体之间是什么类型 （1:1 1:n n:m)  1.2并根据e-r图给出关系模式（数据表结构） 1:1类型  1&amp;gt;//直接写  1:n类型 12&amp;gt;//n端 自己本身属性&amp;gt;//1端的主键+联系的属性  ">
+  <meta property="og:description" content="数据库考试1.E-R图 1.1画出E-R图判断实体之间是什么类型 先画图再去判断实体之间是什么类型 （1:1 1:n n:m)  1.2并根据e-r图给出关系模式（数据表结构） 1:1类型  1&amp;gt;直接写  1:n类型 12&amp;gt;n端 自己本身属性&amp;gt;1端的主键+联系的属性  n:m类型 ">
   
   <meta property="og:url" content="http://example.com/2024/12/28/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%80%83%E8%AF%95/" />
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="数据库复习">
   
-  <meta name="twitter:description" content="数据库考试1.E-R图 1.1画出E-R图判断实体之间是什么类型 先画图再去判断实体之间是什么类型 （1:1 1:n n:m)  1.2并根据e-r图给出关系模式（数据表结构） 1:1类型  1&amp;gt;//直接写  1:n类型 12&amp;gt;//n端 自己本身属性&amp;gt;//1端的主键+联系的属性  ">
+  <meta name="twitter:description" content="数据库考试1.E-R图 1.1画出E-R图判断实体之间是什么类型 先画图再去判断实体之间是什么类型 （1:1 1:n n:m)  1.2并根据e-r图给出关系模式（数据表结构） 1:1类型  1&amp;gt;直接写  1:n类型 12&amp;gt;n端 自己本身属性&amp;gt;1端的主键+联系的属性  n:m类型 ">
   
   
   
@@ -198,13 +198,13 @@
 <p><img src="/../images/E-R3.png" alt="image-20241228174132079"></p>
 <h3 id="1-2并根据e-r图给出关系模式（数据表结构）"><a href="#1-2并根据e-r图给出关系模式（数据表结构）" class="headerlink" title="1.2并根据e-r图给出关系模式（数据表结构）"></a>1.2并根据e-r图给出关系模式（数据表结构）</h3><blockquote>
 <p><strong>1:1类型</strong> </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">//直接写</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;直接写</span><br></pre></td></tr></table></figure>
 
 <p><strong>1:n类型</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">//n端 自己本身属性</span></span><br><span class="line">&gt;<span class="comment">//1端的主键+联系的属性</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;n端 自己本身属性</span><br><span class="line">&gt;<span class="number">1</span>端的主键+联系的属性</span><br></pre></td></tr></table></figure>
 
 <p><strong>n:m类型</strong> 最后会产生三个关系</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">//m自己写自己的 </span></span><br><span class="line">&gt;<span class="comment">//n自己写自己的 </span></span><br><span class="line">&gt;<span class="comment">//还有一个 联系属性+各自主键</span></span><br><span class="line">&gt;最后会产生三个关系</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;m自己写自己的 </span><br><span class="line">&gt;n自己写自己的 </span><br><span class="line">&gt;还有一个 联系属性+各自主键</span><br><span class="line">&gt;最后会产生三个关系</span><br></pre></td></tr></table></figure>
 
 
 </blockquote>
@@ -215,11 +215,11 @@
 <p>商品(商品号、商品名、单价)</p>
 <p><strong>经营(月销售量、商品号、商店号)</strong></p>
 </blockquote>
-<h2 id="2-关系模式"><a href="#2-关系模式" class="headerlink" title="2.关系模式"></a>2.关系模式</h2><h3 id="2-1范式"><a href="#2-1范式" class="headerlink" title="2.1范式"></a>2.1范式</h3><blockquote>
+<h2 id="2-范式"><a href="#2-范式" class="headerlink" title="2.范式"></a>2.范式</h2><h3 id="2-1范式"><a href="#2-1范式" class="headerlink" title="2.1范式"></a>2.1范式</h3><blockquote>
 <p><strong>1NF:</strong> 基本都符合1NF</p>
 <p><strong>2NF:</strong> 每一个非主属性完全依赖于候选码(<strong>没有部分依赖</strong>)</p>
-<p>**3NF:**既不传递依赖，也不部分依赖</p>
-<p>**BCNF:**所有决定因素都是主属性(c-&gt;a a-&gt;b a和c都是候选键，那么这个关系符合BCNF)</p>
+<p><strong>3NF:</strong> 既不传递依赖，也不部分依赖</p>
+<p>**BCNF: ** 所有决定因素都是主属性(c-&gt;a a-&gt;b a和c都是候选键，那么这个关系符合BCNF)</p>
 </blockquote>
 <p> 当一个元素组合能推出关系中所有元素，则称为候选码</p>
 <h3 id="例一"><a href="#例一" class="headerlink" title="例一:"></a>例一:</h3><p><img src="/../images/sql-1.png" alt="image-20241228161235336"></p>
