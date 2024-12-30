@@ -15,7 +15,7 @@
   
   <link rel="canonical" href="http://example.com/2024/12/28/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%80%83%E8%AF%95/">
   
-  <meta name="description" content="数据库考试1.E-R图 1.1画出E-R图判断实体之间是什么类型 先画图再去判断实体之间是什么类型 （1:1 1:n n:m)  1.2并根据e-r图给出关系模式（数据表结构） 1:1类型  1&amp;gt;直接写  1:n类型 12&amp;gt;n端 自己本身属性&amp;gt;1端的主键+联系的属性  n:m类型 ">
+  <meta name="description" content="数据库考试1.E-R图 1.1画出E-R图判断实体之间是什么类型 先画图再去判断实体之间是什么类型 （1:1 1:n n:m)  1.2并根据e-r图给出关系模式（数据表结构） 1:1类型  1&amp;gt;直接写  1:n类型 12&amp;gt;n端 自己本身属性 + 1端的主键+联系的属性&amp;gt;1端 自己">
   
   
   <meta name="author" content="John Doe">
@@ -26,14 +26,14 @@
   <meta property="og:type" content="article" />
   <meta property="og:title" content="数据库复习" />
   
-  <meta property="og:description" content="数据库考试1.E-R图 1.1画出E-R图判断实体之间是什么类型 先画图再去判断实体之间是什么类型 （1:1 1:n n:m)  1.2并根据e-r图给出关系模式（数据表结构） 1:1类型  1&amp;gt;直接写  1:n类型 12&amp;gt;n端 自己本身属性&amp;gt;1端的主键+联系的属性  n:m类型 ">
+  <meta property="og:description" content="数据库考试1.E-R图 1.1画出E-R图判断实体之间是什么类型 先画图再去判断实体之间是什么类型 （1:1 1:n n:m)  1.2并根据e-r图给出关系模式（数据表结构） 1:1类型  1&amp;gt;直接写  1:n类型 12&amp;gt;n端 自己本身属性 + 1端的主键+联系的属性&amp;gt;1端 自己">
   
   <meta property="og:url" content="http://example.com/2024/12/28/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%80%83%E8%AF%95/" />
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="数据库复习">
   
-  <meta name="twitter:description" content="数据库考试1.E-R图 1.1画出E-R图判断实体之间是什么类型 先画图再去判断实体之间是什么类型 （1:1 1:n n:m)  1.2并根据e-r图给出关系模式（数据表结构） 1:1类型  1&amp;gt;直接写  1:n类型 12&amp;gt;n端 自己本身属性&amp;gt;1端的主键+联系的属性  n:m类型 ">
+  <meta name="twitter:description" content="数据库考试1.E-R图 1.1画出E-R图判断实体之间是什么类型 先画图再去判断实体之间是什么类型 （1:1 1:n n:m)  1.2并根据e-r图给出关系模式（数据表结构） 1:1类型  1&amp;gt;直接写  1:n类型 12&amp;gt;n端 自己本身属性 + 1端的主键+联系的属性&amp;gt;1端 自己">
   
   
   
@@ -201,7 +201,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;直接写</span><br></pre></td></tr></table></figure>
 
 <p><strong>1:n类型</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;n端 自己本身属性</span><br><span class="line">&gt;<span class="number">1</span>端的主键+联系的属性</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;n端 自己本身属性 + <span class="number">1</span>端的主键+联系的属性</span><br><span class="line">&gt;<span class="number">1</span>端 自己属性</span><br></pre></td></tr></table></figure>
 
 <p><strong>n:m类型</strong> 最后会产生三个关系</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;m自己写自己的 </span><br><span class="line">&gt;n自己写自己的 </span><br><span class="line">&gt;还有一个 联系属性+各自主键</span><br><span class="line">&gt;最后会产生三个关系</span><br></pre></td></tr></table></figure>
