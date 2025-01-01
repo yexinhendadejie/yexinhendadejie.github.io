@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+  <!-- Minima -->
+  <!-- Hexo theme created by @adisaktijrs -->
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+
+  
+  <title></title>
+  
+  <link rel="canonical" href="http://example.com/2024/12/31/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">
+  
+  <meta name="description" content="计算机组成原理1.反码原码补码 求原码 14 &amp;#x3D; 0000 1110 (由下面1110 补全八位 前面补0) -21 &amp;#x3D; 100 10101 (负数 最前面补1) 思路:   反码: 正数:原码 补码 反码相同 为原码本身 负数:原码 –&amp;gt; 反码 符号位不变 其他取反 -2">
+  
+  
+  <meta name="author" content="John Doe">
+  
+  
+  
+  <meta property="og:site_name" content="Hexo" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="" />
+  
+  <meta property="og:description" content="计算机组成原理1.反码原码补码 求原码 14 &amp;#x3D; 0000 1110 (由下面1110 补全八位 前面补0) -21 &amp;#x3D; 100 10101 (负数 最前面补1) 思路:   反码: 正数:原码 补码 反码相同 为原码本身 负数:原码 –&amp;gt; 反码 符号位不变 其他取反 -2">
+  
+  <meta property="og:url" content="http://example.com/2024/12/31/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="">
+  
+  <meta name="twitter:description" content="计算机组成原理1.反码原码补码 求原码 14 &amp;#x3D; 0000 1110 (由下面1110 补全八位 前面补0) -21 &amp;#x3D; 100 10101 (负数 最前面补1) 思路:   反码: 正数:原码 补码 反码相同 为原码本身 负数:原码 –&amp;gt; 反码 符号位不变 其他取反 -2">
+  
+  
+  
+  
+  <meta name="twitter:url" content="http://example.com/2024/12/31/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" />
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Preload fonts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="preload" href="/fonts/dm-serif-display-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/inter-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+<link rel="stylesheet" href="/css/normalize.css">
+
+  
+<link rel="stylesheet" href="/css/skeleton.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+<link rel="stylesheet" href="/css/hljs.css">
+
+  <!-- 
+<link rel="stylesheet" href="/css/prism-dark.css">
+ -->
+  <!-- 
+<link rel="stylesheet" href="/css/prism-line-numbers.css">
+ -->
+  <!-- User css -->
+  
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+
+  <!-- Custom Theme Color Style
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <style>
+  a:not(.icon) {
+    text-decoration-color: #8F2323;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      #8F2323 50%
+    );
+  }
+  blockquote {
+    border-left: 8px solid #8F2323;
+  }
+  .nanobar .bar {
+    background: #8F2323;
+  }
+  .button.button-primary:hover,
+  button.button-primary:hover,
+  input[type="submit"].button-primary:hover,
+  input[type="reset"].button-primary:hover,
+  input[type="button"].button-primary:hover,
+  .button.button-primary:focus,
+  button.button-primary:focus,
+  input[type="submit"].button-primary:focus,
+  input[type="reset"].button-primary:focus,
+  input[type="button"].button-primary:focus {
+    background-color: #8F2323;
+    border-color: #8F2323;
+  }
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  input[type="search"]:focus,
+  input[type="text"]:focus,
+  input[type="tel"]:focus,
+  input[type="url"]:focus,
+  input[type="password"]:focus,
+  textarea:focus,
+  select:focus {
+    border: 1px solid #8F2323;
+  }
+</style>
+
+  <!-- Google Analytics (With Privacy Settings On)
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+
+  
+  <script src="/js/pic.min.js" defer></script>
+  
+
+  
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div>
+
+        <div class="row">
+  <div class="two columns" style="max-width: 50px">
+    <h1 class="mt-2 mode">
+      <div onclick=setDarkMode(true) id="darkBtn">🌒</div>
+      <div onclick=setDarkMode(false) id="lightBtn" class=hidden>🌝</div>
+      <script >
+        if (localStorage.getItem('preferredTheme') == 'dark') {
+          setDarkMode(true)
+        }
+        function setDarkMode(isDark) {
+          var darkBtn = document.getElementById('darkBtn')
+          var lightBtn = document.getElementById('lightBtn')
+          if (isDark) {
+            lightBtn.style.display = "block"
+            darkBtn.style.display = "none"
+            localStorage.setItem('preferredTheme', 'dark');
+          } else {
+            lightBtn.style.display = "none"
+            darkBtn.style.display = "block"
+            localStorage.removeItem('preferredTheme');
+          }
+          document.body.classList.toggle("darkmode");
+        }
+      </script>
+    </h1>
+  </div>
+
+  <div class="six columns ml-1">
+    <h1 class="mt-2">
+      Hi Jay.
+    </h1>
+  </div>
+
+  <div class="twelve columns">
+    <div class="row">
+      <div class="nine columns left">
+        <a href="/">Home</a>
+        
+          
+          <a href="/about" class="ml">About</a>
+          
+        
+        
+          
+            <a href="mailto:HurdJay@outlook.com" target="_blank" class="ml">Email</a>
+          
+        
+      </div>
+    </div>
+    <hr style="margin-bottom: 2.6rem">
+  </div>
+</div>
+
+        <div class="trans">
+            <h2></h2>
+
+  <h1 id="计算机组成原理"><a href="#计算机组成原理" class="headerlink" title="计算机组成原理"></a>计算机组成原理</h1><h2 id="1-反码原码补码"><a href="#1-反码原码补码" class="headerlink" title="1.反码原码补码"></a>1.反码原码补码</h2><blockquote>
+<p>求原码</p>
+<p>14 &#x3D; 0000 1110 (<code>由下面1110 补全八位 前面补0</code>)</p>
+<p>-21 &#x3D; 100 10101 (<code>负数 最前面补1</code>)</p>
+<p>思路: </p>
+<p><img src="/Users/yexinhendadejie/Documents/docs/hexo/HurdJay/source/images/jizu1.png" alt="image-20241231214814188"></p>
+<p>反码:</p>
+<p>正数:原码 补码 反码相同 为原码本身</p>
+<p>负数:原码 –&gt; 反码 <code>符号位不变 其他取反</code></p>
+<p>-21 &#x3D; 10010101(原码)</p>
+<p>-21 &#x3D;  11101010(反码)</p>
+<p>补码:</p>
+<p>补码&#x3D; 反码 + 1</p>
+<p>-21&#x3D;11101011 	</p>
+</blockquote>
+<p>总结: </p>
+<p><strong>正数：</strong></p>
+<ul>
+<li>原码、反码、补码都相同。<br>没有符号位取反的问题。</li>
+</ul>
+<p><strong>负数：</strong></p>
+<ul>
+<li>反码：符号位不变，其余位逐位取反。<br>补码：反码 + 1。</li>
+</ul>
+<h2 id="2-y-补的求法"><a href="#2-y-补的求法" class="headerlink" title="2.[-y]补的求法"></a>2.[-y]补的求法</h2><blockquote>
+<p><code>加法</code> 正常进位</p>
+<p><code>减法</code>  [x-y]补&#x3D;[x]补+[-y]补</p>
+<p>[-y]补 &#x3D;<code> 逐位取反(包括符号位)然后在最后面+1</code></p>
+<p>例如：[y]补&#x3D;101101</p>
+<p>​				<strong>[-y补]</strong>&#x3D;010010+1&#x3D;010011</p>
+</blockquote>
+<p><strong>补码减法公式中 [−y]补</strong>：</p>
+<ul>
+<li>逐位取反，包括符号位，然后 +1。</li>
+</ul>
+<h2 id="3-变形补码计算"><a href="#3-变形补码计算" class="headerlink" title="3.变形补码计算"></a>3.变形补码计算</h2><ul>
+<li>01 正溢出</li>
+<li>10 负溢出</li>
+</ul>
+<p>正数的时候补 00</p>
+<p>负数的时候补 11</p>
+<blockquote>
+<p>双符号位</p>
+<p>例:x&#x3D;0.11010</p>
+<p>​	  y&#x3D;0.10111</p>
+<p>[x]补&#x3D; <strong>00</strong> 11010</p>
+<p>[y]补&#x3D; <strong>00</strong> 10111</p>
+<p>[x]补+[y]补&#x3D; <strong>00</strong> 11010 + <strong>00</strong> 10111 &#x3D;01 10001 正溢出</p>
+<p>例:x&#x3D;0.11101</p>
+<p>​	  y&#x3D;-0.10100</p>
+<p>[x]补&#x3D; <strong>00</strong> 11101</p>
+<p>[y]补&#x3D; <strong>11</strong> 01011(符号位不变其余位置取反)+1&#x3D; 11 01100</p>
+<p>[x]补+[y]补&#x3D; 00 11101 + 11 01100 &#x3D; 00 01001 (<code>前面只有两位</code>)没有溢出</p>
+<p>单符号位</p>
+<p><code>例x=0.1000 y=-0.1110 计算x-y=?</code></p>
+<p><code>即求 [x]补+[-y]补=?</code></p>
+<p>[x]原 &#x3D; 001000&#x3D; [x]补&#x3D;001000</p>
+<p><code>[x]补=00 1000</code></p>
+<p>[y]原&#x3D;1 01110 [y]反&#x3D;1 10001(符号位不变) [y]补&#x3D;110010(反码+1)</p>
+<p><code>[y]补=11 0001 +1 = 11 0010(符号位不变 其余位 取反+1)</code></p>
+<p><code>[-y]补=00 1101+1 = 00 1110(全部取反+1)</code></p>
+<p><code>[x]补+[-y]补=00 1000 + 00 1110 = 01 0110</code></p>
+<h6 id=""><a href="#" class="headerlink" title=""></a></h6></blockquote>
+<ol>
+<li>计算机软件一般可分为 <strong>_______</strong> 软件和 <strong>_______</strong> 软件。</li>
+<li><strong>_______</strong> 和 <strong>_______</strong> ，这是冯·诺伊曼型计算机的设计思想。</li>
+<li>数在计算机中的表示方法有 <strong>_______ 、_______ 、_______ 、_______</strong> 。</li>
+<li>8 位二进制数（1 位符号位，7 位数值位），所能表示的十进制数范围，原码为 <strong>_______</strong> 到 <strong>_______</strong> ，移码为 <strong>_______</strong> 到 <strong>_______</strong> 。</li>
+<li>8 位二进制数（1 位符号位，7 位数值位），所能表示的十进制数范围，反码为 <strong>_______</strong> 到 <strong>_______</strong> ，补码为 <strong>_______</strong> 到 <strong>_______</strong> 。</li>
+<li>按 IEEE754 标准，一个浮点数由 <strong>_______</strong> 、 <strong>_______</strong> 、 <strong>_______</strong> 三部分组成。在 32 位浮点数中阶码 E 的值等于指数的真值加上一个数 <strong>_______</strong> 。</li>
+<li>已知一段 8 位数据 1001 1111，如果需要加奇校验，则校验位应该为 <strong>_______</strong> 。</li>
+<li>已知一段 8 位数据 1001 1001，如果需要加偶校验，则校验位应该为 <strong>_______</strong> 。</li>
+<li>对存储器的要求是_______、_______、_______，为了解决这三方面的矛盾，计算机采用多级存储体系结构。</li>
+<li>主存和 cache 的地址映射有 <em><strong><strong><strong>、</strong></strong></strong></em> 和 <strong>_______</strong> 三种方式。</li>
+<li>DRAM 存储器的刷新一般有 <strong>_______</strong> 和 <strong>_______</strong> 二种方式。</li>
+<li>相联存储器是按 <strong>_______</strong> 访问的存储器。</li>
+<li>通常虚拟存储器的管理方式有： <strong>_______ 、_______</strong> 和 <strong>_______</strong> 。</li>
+<li>存储器按存储方式分，可分为顺序存储器和随机存储器，那么内存属于其中的 <strong>_______</strong> 。</li>
+<li>一台计算机所有机器指令的集合称为这台计算机的 <strong>_______</strong> 。</li>
+<li>指令格式通常由操作码字段和 <strong>_______</strong> 字段组成。</li>
+<li>二地址指令中，操作数的物理位置有三种型式，它们是 <strong>_______ 、_______</strong> 型和 <strong>_______</strong> 型。</li>
+<li>存储器按在计算机系统中的作用可分为 <em><strong><strong><strong>、_______、</strong></strong></strong></em> 和_______ 等。</li>
+<li>指令的寻址方式有两种，一种是 <strong>_______</strong> 寻址方式，另一种是跳跃寻址方式。</li>
+<li>CPU 周期也称为 **_______**，一个 CPU 周期包含若干个 <strong>_______</strong> 周期。</li>
+<li>微程序控制器的核心部件是 **_______**，它是一种只读存储器。</li>
+<li>CPU 从主存取出一条指令并执行该指令的时间叫做 **_______**，它常常用若干个 <strong>_______</strong> 来表示，而后者又包含若干个时钟周期。</li>
+<li>RISC 的中文含义是 **_______**，CISC 的中文含义是 <strong>_______</strong> 。</li>
+<li>构成中央处理器的两大部件是 <strong>_______</strong> 和 <strong>_______</strong> 。</li>
+<li>运算器的两个主要功能是： <strong>_______</strong> 和 <strong>_______</strong> 。</li>
+<li>微指令中的操作控制字段可采用的表示方法 **<em><strong><strong>、</strong></strong></em> 和 <strong>_______</strong> 。</li>
+<li>微程序控制器中，时序信号比较简单，一般采用 <strong>_______ — _______</strong> 二级体制。</li>
+<li>硬布线控制器中，时序信号往往采用取 <strong>_______ — _______ — _______</strong> 三级体制。</li>
+<li>组成计算机硬件的器件特性决定了时序信号最基本的体制是 <strong>_______ — _______</strong> 。</li>
+<li>用于存放下一条指令地址的寄存器是 <strong>_______</strong> 。</li>
+<li>用于存放当前正在执行的指令的寄存器是 <strong>_______</strong> 。</li>
+<li>在 CPU 中保存当前正在执行的指令地址的寄存器是 <strong>_______</strong> 。</li>
+<li>流水 CPU 中的主要问题是 <strong>_______</strong> 、 <strong>_______</strong> 和 **_______**，为此需要采用相应的技术对策，才能保证流水畅通而不断流。</li>
+<li>在集中式总线仲裁中， <strong>_______</strong> 方式响应时间最快。</li>
+<li>在集中式总线仲裁中， <strong>_______</strong> 方式对电路故障最敏感。</li>
+<li>在同步定时和异步定时中， <strong>_______</strong> 具有公共时钟信号。</li>
+<li>按照总线仲裁电路的位置不同，仲裁方式分为 <strong>_______</strong> 仲裁和 <strong>_______</strong> 仲裁。</li>
+<li>在总线仲裁的集中式仲裁中，常见有 3 种方式，分别是 <strong>_______ 、_______</strong> 和 <strong>_______</strong> 。</li>
+<li>CRT 显示器上构成图像的最小单元或图像中的一个点称为 <strong>_______</strong> 。</li>
+<li>外围设备的三个基本组成部分为 <strong>_______ 、_______</strong> 和 <strong>_______</strong> 。</li>
+<li>磁盘的存储密度有 <strong>_______ 、_______</strong> 和 <strong>_______</strong> 之分。</li>
+</ol>
+<h2 id="3-IEE754"><a href="#3-IEE754" class="headerlink" title="3.IEE754"></a>3.IEE754</h2><p>例:</p>
+<p>十进制0.75的IEE754单精度浮点数的二进制是</p>
+<blockquote>
+<p>总位数 23位</p>
+<p>符号为 1位 指数位8位(127) 尾数位23位</p>
+<p>十进制转二进制 (0.75)10-&gt;(0.11)2    0.75X2&#x3D;1.5  0.5X2&#x3D;1 所以是 11</p>
+<p>1.xxxx的格式: 0.11 &#x3D; 1.1*2的-1次 (往右移 左就是正数)</p>
+<p>指数 127-1&#x3D;126 ——&gt;(01111110)</p>
+<p>0 01111110 000000000000000000000</p>
+</blockquote>
+<p>例2</p>
+<p><img src="/../images/jizu2.png" alt="image-20250101201310663"></p>
+<p>1 ⋅ 2^7 + 0 ⋅ 2^6 + 0 ⋅ 2^5 + 0 ⋅ 2^4 + 0 ⋅ 2^3 + 0 ⋅ 2^2 + 1 ⋅ 2^1 + 1 ⋅ 2^0</p>
+<p>&#x3D; 128 + 2 + 1</p>
+<p>&#x3D; 131</p>
+
+  <p> — 2024年12月31日</p>
+  
+
+
+        </div>
+        <!-- <div class="row mt-2">
+  <h3>Search</h3>
+  <div><input id="search-text" title="search" class="search-text" type="text" placeholder="search......"></div>
+  <div style="margin-top: 1.5rem;">
+    <ul id="result"></ul>
+  </div>
+</div> -->
+        <div class="row mt-2">
+  
+    <div class="eight columns">
+      <p id="madewith">Made with ❤ and
+        <a class="footer-link icon" href="https://hexo.io" target="_blank" style="text-decoration: none;" rel="noreferrer" aria-label="Hexo.io">
+        <svg class="hexo svg-hov" width="14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Hexo.js</title><path d="M12 .007L1.57 6.056V18.05L12 23.995l10.43-6.049V5.952L12 .007zm4.798 17.105l-.939.521-.939-.521V12.94H9.08v4.172l-.94.521-.938-.521V6.89l.939-.521.939.521v4.172h5.84V6.89l.94-.521.938.521v10.222z"/></svg>
+        </a>
+        
+        at <a href="https://en.wikipedia.org/wiki/Earth" target="_blank" rel="noreferrer">Earth</a>.</p>
+        
+    </div>
+
+    <!-- Sepcial thanks to https://simpleicons.org/ for the icons -->
+    <div class="four columns mb-3 posisi" >
+      
+      <a class="ml-0 footer-link icon" href="https://github.com/yexinhendadejie" target="_blank" style="text-decoration: none" rel="noreferrer" aria-label="GitHub">
+        <svg class="github svg-hov" width="18" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      
+
+      
+
+      
+
+      
+
+      
+
+    </div>
+  
+</div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <script src="/js/nanobar.min.js"></script>
+
+  <script>
+    var options = {
+      classname: 'nanobar',
+      id: 'myNanobar'
+    };
+    var nanobar = new Nanobar(options);
+    nanobar.go(30);
+    nanobar.go(76);
+    nanobar.go(100);
+  </script>
+
+</body>
+
+</html>
