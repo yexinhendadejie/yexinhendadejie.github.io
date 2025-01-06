@@ -256,7 +256,7 @@
 </ul>
 <h3 id="1-7-3重点-具有五层协议的原理体系结构（重点）"><a href="#1-7-3重点-具有五层协议的原理体系结构（重点）" class="headerlink" title="1.7.3重点 具有五层协议的原理体系结构（重点）(*)"></a>1.7.3<code>重点 </code>具有五层协议的原理体系结构（重点）(*)</h3><p>应用层：直接为用户的应用进程提供服务；(发送给客户)</p>
 <p>运输层：负责主机中两个进程之间的通信；(端到报文传输)</p>
-<p>网 ：负责为分组交换网上的不同主机提供通信；(快递A省到B省)</p>
+<p>网络层 ：负责为分组交换网上的不同主机提供通信；(快递A省到B省)</p>
 <p>数据链路层：在相邻的两个节点间的链路上传送以<code>帧</code>为单位的数据；(节点到节点流量控制) </p>
 <p> 物理层：透明地传送比特流；(发送快递交通工具)</p>
 <p><img src="/../images/jiwang6.png" alt="image-20250104151004342"></p>
@@ -732,12 +732,9 @@
 <p><strong>连接管理</strong>：支持连接的建立和断开，确保稳定通信。</p>
 <h2 id="5-2运输层的两种协议，运用场合、特点及哪些应用层协议使用这两种运输层协议（具体应用举例）"><a href="#5-2运输层的两种协议，运用场合、特点及哪些应用层协议使用这两种运输层协议（具体应用举例）" class="headerlink" title="5.2运输层的两种协议，运用场合、特点及哪些应用层协议使用这两种运输层协议（具体应用举例）"></a>5.2<code>运输层的两种协议，运用场合、特点及哪些应用层协议使用这两种运输层协议（具体应用举例）</code></h2><h4 id="TCP（传输控制协议）"><a href="#TCP（传输控制协议）" class="headerlink" title=". TCP（传输控制协议）"></a><strong>. TCP（传输控制协议）</strong></h4><ul>
 <li><strong>特点</strong>：<ul>
-<li><strong>面向连接</strong>：在数据传输前需要建立连接，确保可靠通信。</li>
-<li><strong>可靠传输</strong>：提供数据的顺序传输、差错控制和重传机制，确保数据不丢失、不重复、按顺序到达。</li>
-<li><strong>流量控制</strong>：通过滑动窗口机制控制数据流速，避免接收方缓存溢出。</li>
-<li><strong>拥塞控制</strong>：动态调整传输速率，防止网络拥塞。</li>
-<li><strong>重传机制</strong>：若数据丢失，TCP会自动进行重传。</li>
-<li><strong>四次挥手断开连接</strong>：通过四次挥手的方式断开连接，确保连接的可靠关闭。</li>
+<li>可靠</li>
+<li>面向连接</li>
+<li>时延大</li>
 </ul>
 </li>
 <li><strong>运用场合</strong>：<ul>
@@ -753,10 +750,9 @@
 </ul>
 <h4 id="2-UDP（用户数据报协议）"><a href="#2-UDP（用户数据报协议）" class="headerlink" title="2. UDP（用户数据报协议）"></a><strong>2. UDP（用户数据报协议）</strong></h4><ul>
 <li><strong>特点</strong>：<ul>
-<li><strong>无连接</strong>：数据传输前不需要建立连接，开销较小。</li>
-<li><strong>不可靠传输</strong>：UDP不提供顺序控制、重传机制、流量控制等保障，数据可能丢失、重复或乱序。</li>
-<li><strong>高效性</strong>：由于没有连接建立和维护的开销，UDP传输速度更快，适用于实时应用。</li>
-<li><strong>简单</strong>：UDP头部格式简单，开销较小，适合大规模、高频率的数据传输。</li>
+<li>不可靠</li>
+<li>无连接</li>
+<li>时延小</li>
 </ul>
 </li>
 <li><strong>运用场合</strong>：<ul>
@@ -793,71 +789,16 @@
 <td>用于文件传输，允许文件的上传和下载。</td>
 </tr>
 </tbody></table>
-<h2 id="5-4UDP-协议的特点"><a href="#5-4UDP-协议的特点" class="headerlink" title="5.4UDP 协议的特点"></a><strong>5.4<code>UDP 协议的特点</code></strong></h2><table>
-<thead>
-<tr>
-<th><strong>特点</strong></th>
-<th><strong>说明</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>无连接</strong></td>
-<td>UDP是无连接协议，发送数据之前不需要建立连接。</td>
-</tr>
-<tr>
-<td><strong>不可靠</strong></td>
-<td>UDP不保证数据传输的可靠性，可能丢失数据包。</td>
-</tr>
-<tr>
-<td><strong>速度较快</strong></td>
-<td>因为没有连接建立和确认机制，UDP比TCP速度更快。</td>
-</tr>
-<tr>
-<td><strong>无流量控制</strong></td>
-<td>没有流量控制和拥塞控制机制。</td>
-</tr>
-<tr>
-<td><strong>面向报文</strong></td>
-<td>数据以报文为单位发送，保留应用程序发送的数据边界。</td>
-</tr>
-<tr>
-<td><strong>适用于实时应用</strong></td>
-<td>适用于对实时性要求高、但容忍丢包的应用（如视频、语音通话）。</td>
-</tr>
-</tbody></table>
-<hr>
-<h2 id="5-5-TCP-协议的特点"><a href="#5-5-TCP-协议的特点" class="headerlink" title="5.5**TCP 协议的特点**"></a>5.5**<code>TCP 协议的特点</code>**</h2><table>
-<thead>
-<tr>
-<th><strong>特点</strong></th>
-<th><strong>说明</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>面向连接</strong></td>
-<td>TCP在数据传输之前必须建立连接，确保通信双方都准备好。</td>
-</tr>
-<tr>
-<td><strong>可靠传输</strong></td>
-<td>TCP通过确认机制、重传机制、校验和等手段，确保数据的可靠性。</td>
-</tr>
-<tr>
-<td><strong>有流量控制</strong></td>
-<td>TCP有流量控制机制，避免发送方过快，造成接收方拥堵。</td>
-</tr>
-<tr>
-<td><strong>拥塞控制</strong></td>
-<td>TCP有拥塞控制机制，通过减小发送速率来避免网络拥塞。</td>
-</tr>
-<tr>
-<td><strong>数据有序</strong></td>
-<td>TCP保证数据按顺序到达接收方，若顺序错乱，接收方会请求重传。</td>
-</tr>
-<tr>
-<td><strong>适用于文件传输</strong></td>
-<td>适用于需要高可靠性和顺序性保证的应用（如文件传输、网页浏览）。</td>
-</tr>
-</tbody></table>
+<h2 id="5-4UDP-协议的特点"><a href="#5-4UDP-协议的特点" class="headerlink" title="5.4UDP 协议的特点"></a><strong>5.4<code>UDP 协议的特点</code></strong></h2><ul>
+<li>不可靠</li>
+<li>无连接</li>
+<li>时延小</li>
+</ul>
+<h2 id="5-5-TCP-协议的特点"><a href="#5-5-TCP-协议的特点" class="headerlink" title="5.5**TCP 协议的特点**"></a>5.5**<code>TCP 协议的特点</code>**</h2><ul>
+<li>可靠</li>
+<li>面向连接</li>
+<li>时延大</li>
+</ul>
 <h2 id="用户点击URL后发生的事件"><a href="#用户点击URL后发生的事件" class="headerlink" title="用户点击URL后发生的事件"></a><code>用户点击URL后发生的事件</code></h2><p>(1)浏览器分析超链指向页面的 URL。<br>(2)浏览器向 DNS 请求解析 <a target="_blank" rel="noopener" href="http://www.tsinghua.edu.cn/">www.tsinghua.edu.cn</a> 的 IP地址。<br>(3)域名系统 DNS 解析出清华大学服务器的 IP 地址</p>
 <p>(4)浏览器与服务器建立 TCP 连接。<br>(5)浏览器发出取文件命令:GET &#x2F;chn&#x2F;yxsz&#x2F;index.htm。<br>(6)服务器给出响应，把文件 index.htm 发给浏览器。<br>(7)TCP 连接释放。<br>(8)浏览器显示“清华大学院系设置”文件 index.htm 中的所有文本。</p>
 <h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="6-应用层总结："><a href="#6-应用层总结：" class="headerlink" title="6.应用层总结："></a><strong>6.应用层总结</strong>：</h2><ul>
